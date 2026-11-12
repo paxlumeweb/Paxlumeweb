@@ -13,7 +13,7 @@ This file is not linked from the website. Note: this repo is public, so never pu
 - Business: Paxlume Web Studio, a small Brisbane web design business. Slogan "Websites made simple."
 - Goal right now: first $1,000 AUD (4 x $250 Starter websites) with a $0 budget.
 - Website is live: https://paxlumeweb.github.io/Paxlumeweb/ (deploys automatically from the `main` branch).
-- Pages: `index.html` (homepage), `privacy.html`, `thank-you.html`, and (in PR #5) `terms.html`, `refunds.html`, `404.html`, plus three demo sites: `greenedge.html` (GreenEdge Lawn Care), `shineworks.html` (ShineWorks Auto Detailing), `brightpath.html` (BrightPath Tutoring). The demos are fictional and labelled as samples.
+- Pages: `index.html` (homepage), `privacy.html`, `thank-you.html`, `terms.html`, `refunds.html`, `404.html`, plus three demo sites: `greenedge.html` (GreenEdge Lawn Care), `shineworks.html` (ShineWorks Auto Detailing), `brightpath.html` (BrightPath Tutoring). The demos are fictional and labelled as samples.
 - Brand: navy `#101D2C`, mint `#65D6BA`, white.
 - Done: site fixed and verified, homepage redesign + FAQ, GitHub workflow, business email set up, customer docs and lead tracker (kept privately, not in this repo).
 - Payments: bank transfer, A$125 on accepted agreement + A$125 on final preview approval, private invoices only (owner approved 2026-11-12).
@@ -195,8 +195,8 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 
 **Gaps found:** private preview links need the client's hosting account first (until then, preview by screenshots); client build folders need a private home (Ben's computer plus business Google Drive); client sites are uploaded by hand, never through this public repo.
 
-## Claude update: design clean-up, launch checklist and legal pages (2026-11-12, PR #5, not merged)
-Ben sent three lists. Everything below is in one pull request, waiting for Ben's OK. Nothing is live until it's merged.
+## Claude update: design clean-up, launch checklist and legal pages (2026-11-12, PR #5, merged)
+Ben sent three lists. Everything below was in one pull request. Ben said merge on 2026-11-12 and it is live.
 
 ### List 1: generic "AI look" removed
 | Pattern | Found? | What changed |
@@ -238,7 +238,7 @@ Also removed: floating animation on the hero mockups and the "Looks great on pho
 
 ## Tasks for ChatGPT
 <!-- Non-code jobs Claude can't do (Claude has no Gmail access). Nothing private here. -->
-- [ ] 2026-11-12: Go through the Terms of service and Refund policy drafts in PR #5 with Ben and a parent or guardian. Note any wording to change in "Questions for Claude" (so the legal pages can go live).
+- [ ] 2026-11-12: Go through the Terms of service and Refund policy pages (now live: terms.html, refunds.html) with Ben and a parent or guardian. Note any wording to change in "Questions for Claude" (so the legal pages can go live).
 - [ ] 2026-11-12: Help Ben choose analytics. Claude recommends Cloudflare Web Analytics (free, no cookies, no banner needed, and Cloudflare is already the plan for client hosting). Don't sign up until Ben and a parent or guardian agree to Cloudflare's terms; then tell Claude the site token so it can be added and the privacy page updated.
 - [ ] 2026-11-12: Help Ben set up Google Search Console for the site and submit `sitemap.xml` after PR #5 is merged (so Google finds the pages).
 - [ ] 2026-11-12: Any future outreach or follow-up email templates must include Paxlume's name, the business email and a clear way to opt out (Spam Act 2003). Add this to the email templates you keep in Gmail.
@@ -262,7 +262,8 @@ Also removed: floating animation on the hero mockups and the "Looks great on pho
 - 2026-11-12: Opened draft PR #4: payment wording preview (price card + "How do I pay?" FAQ) and the reusable `starter-template/`. Screenshots kept in Ben's private project files. Not merged.
 - 2026-11-12: Ben approved; PR #4 merged.
 - 2026-11-12: Hosting research done (Cloudflare Pages recommended, Netlify fallback) and end-to-end dry-run plan written. No accounts created.
-- 2026-11-12: Opened PR #5: removed generic AI design patterns, added terms, refund, 404, sitemap and robots pages, self-hosted fonts, cookie and data-deletion sections in the privacy notice, contrast fixes and a new share image. Lighthouse 100 across the board. Full list in the "Claude update: design clean-up" section. Not merged.
+- 2026-11-12: Opened PR #5: removed generic AI design patterns, added terms, refund, 404, sitemap and robots pages, self-hosted fonts, cookie and data-deletion sections in the privacy notice, contrast fixes and a new share image. Lighthouse 100 across the board. Full list in the "Claude update: design clean-up" section.
+- 2026-11-12: Ben said merge; PR #5 merged and live. The Terms and Refund pages are live drafts: ChatGPT task 1 (review with a parent or guardian) still applies.
 
 ## Questions for Ben
 _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit._
@@ -273,7 +274,7 @@ _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Deliver
 5. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
 6. **Reply promise** (still open): promise a reply time, such as 2 business days?
 7. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
-8. **PR #5 review:** look at the before/after screenshots and say if the design clean-up and the new Terms and Refund pages can go live (Terms and Refunds after a parent or guardian has read them).
+8. **Terms and Refunds:** these are now live. Please read them with a parent or guardian and tell Claude about any changes.
 9. **Analytics:** OK to use Cloudflare Web Analytics (free, no cookies)? It needs a Cloudflare account, so a parent or guardian should agree to the terms.
 
 ## Rules (always)
