@@ -172,10 +172,11 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - 2026-11-12: Ben approved PR #2; merged to main and live.
 - 2026-11-12: Designed the Google Forms quote form for Ben to build (private build guide). Checked GitHub Pages terms: fine for Paxlume's portfolio, not recommended for customer sites.
 - 2026-11-12: Built the on-site quote form (fields, validation, honeypot, FormSubmit delivery, thank-you and privacy pages) as draft PR #3, switched off until activation and tests. The Google Forms plan was dropped per the owner instruction. Screenshots are kept privately in the project files.
+- 2026-11-12: Ben approved FormSubmit. Sent the activation test, and Ben activated the form for paxlumeweb.github.io. PR #3 now uses FormSubmit's alias address and the form is switched on (still not merged). Two test enquiries with non-personal data (desktop and phone labels) arrived in the business Gmail with the right subject and fields; Ben confirmed by screenshot. The error message was also checked with a real refused submission. Note: FormSubmit's free emails include a small sponsor ad. Remaining: Ben's merge OK, then one final submission from the live site.
 
 ## Questions for Ben
 _Earlier questions answered on 2026-11-12. The Google Forms question is replaced by the on-site form._
-1. **Form service:** approve FormSubmit (recommended) or Web3Forms (fallback)? Please have a parent/guardian check its terms first. Once approved, Claude sends the activation test and you click Activate in Gmail.
+1. **Quote form:** tests passed. Say "merge" to put the form live on the website (PR #3).
 2. **Reply promise:** the form and thank-you page only say "I'll reply by email", with no time limit. Do you want to promise a time, such as 2 business days?
 3. **Keeping enquiries:** the privacy page says enquiry emails are kept "only as long as needed". Do you want a fixed period instead, such as deleting enquiries that don't go ahead after 12 months?
 4. **Customer hosting:** OK for Claude to compare Cloudflare Pages and Netlify terms before the first paying customer? (Research only, no sign-ups.)
