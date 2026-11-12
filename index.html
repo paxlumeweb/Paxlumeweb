@@ -189,7 +189,7 @@
         <h2>How it works</h2>
       </div>
       <ol class="steps">
-        <li class="reveal"><span class="num">1</span><h3>Tell me about your business</h3><p>Send a quick email with your services, contact details, any logo or photos, and what you want customers to do.</p></li>
+        <li class="reveal"><span class="num">1</span><h3>Tell me about your business</h3><p>Fill in the quote form or send a quick email with your services, contact details and what you want customers to do.</p></li>
         <li class="reveal"><span class="num">2</span><h3>Review your design</h3><p>I build a first version and send you a private preview link. You request one round of changes.</p></li>
         <li class="reveal"><span class="num">3</span><h3>Go live</h3><p>Once you approve it, I help you publish it so customers can find you.</p></li>
       </ol>
@@ -237,14 +237,92 @@
 
   <section class="section" id="contact">
     <div class="container">
-      <div class="cta reveal">
-        <div>
+      <div class="cta cta-form reveal">
+        <div class="cta-intro">
           <span class="kicker on-dark">Get in touch</span>
-          <h2>Ready for a website that works?</h2>
-          <p>Email a few details about your business and I'll reply to talk through what you need. No obligation.</p>
-          <p class="email-line"><a href="mailto:paxlumeweb@gmail.com?subject=Website%20enquiry">paxlumeweb@gmail.com</a></p>
+          <h2>Request a free quote</h2>
+          <p>Tell me a little about your business and what you need. I'll reply by email to talk it through. It's free to ask and there's no obligation.</p>
+          <ul class="cta-points">
+            <li>No payment needed to enquire</li>
+            <li>Starter websites are $250 AUD</li>
+            <li>You'll hear back from the person who builds your site</li>
+          </ul>
+          <div class="cta-alt">
+            <p>Prefer email?</p>
+            <p class="email-line"><a href="mailto:paxlumeweb@gmail.com?subject=Paxlume%20website%20enquiry">paxlumeweb@gmail.com</a></p>
+          </div>
         </div>
-        <a class="button mint" href="mailto:paxlumeweb@gmail.com?subject=Website%20enquiry">Email an enquiry</a>
+
+        <form class="quote-form" id="quote-form" action="https://formsubmit.co/paxlumeweb@gmail.com" method="POST" data-quote-form data-form-active="false" novalidate>
+          <!-- Form delivery: FormSubmit (formsubmit.co). DRAFT: not activated yet. While data-form-active="false" the script shows the email fallback instead of sending. -->
+          <input type="hidden" name="_subject" value="Paxlume website enquiry">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://paxlumeweb.github.io/Paxlumeweb/thank-you.html">
+          <div class="hp" aria-hidden="true"><label for="q-hp">Leave this field empty</label><input id="q-hp" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+
+          <h3 class="form-title">Your enquiry</h3>
+          <p class="form-req"><span aria-hidden="true">*</span> Required</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="q-name">Your name <span class="req" aria-hidden="true">*</span></label>
+              <input id="q-name" name="name" type="text" autocomplete="name" required maxlength="100" aria-describedby="q-name-err">
+              <p class="field-error" id="q-name-err" hidden>Please enter your name.</p>
+            </div>
+            <div class="field">
+              <label for="q-email">Email for my reply <span class="req" aria-hidden="true">*</span></label>
+              <input id="q-email" name="email" type="email" autocomplete="email" required maxlength="150" aria-describedby="q-email-err">
+              <p class="field-error" id="q-email-err" hidden>Please enter an email address like name@example.com.</p>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="q-business">Business name <span class="opt">(optional)</span></label>
+              <input id="q-business" name="business_name" type="text" autocomplete="organization" maxlength="120">
+            </div>
+            <div class="field">
+              <label for="q-phone">Phone <span class="opt">(optional)</span></label>
+              <input id="q-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" aria-describedby="q-phone-hint">
+              <p class="field-hint" id="q-phone-hint">Only if you'd like a call back.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="q-service">What are you interested in? <span class="req" aria-hidden="true">*</span></label>
+            <select id="q-service" name="service" required aria-describedby="q-service-err">
+              <option value="">Choose one</option>
+              <option>$250 Starter website</option>
+              <option>Another website project</option>
+              <option>Not sure yet</option>
+            </select>
+            <p class="field-error" id="q-service-err" hidden>Please choose an option.</p>
+          </div>
+
+          <div class="field">
+            <label for="q-about">What does your business do? <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="q-about" name="business_description" rows="3" required maxlength="1500" aria-describedby="q-about-hint q-about-err"></textarea>
+            <p class="field-hint" id="q-about-hint">For example: lawn mowing and garden tidy-ups in Brisbane's north.</p>
+            <p class="field-error" id="q-about-err" hidden>Please tell me a little about your business.</p>
+          </div>
+
+          <div class="field">
+            <label for="q-details">What would you like your website to do? <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="q-details" name="project_details" rows="4" required maxlength="3000" aria-describedby="q-details-hint q-details-err"></textarea>
+            <p class="field-hint" id="q-details-hint">Goals, pages or features you want, any deadline, or sites you like.</p>
+            <p class="field-error" id="q-details-err" hidden>Please add a few details about your project.</p>
+          </div>
+
+          <div class="field">
+            <label for="q-site">Current website or social page <span class="opt">(optional)</span></label>
+            <input id="q-site" name="current_website" type="text" inputmode="url" autocomplete="url" maxlength="200" placeholder="e.g. facebook.com/yourbusiness">
+          </div>
+
+          <p class="form-privacy">Your details are only used to reply to your enquiry. They're sent to my inbox through FormSubmit, a form-delivery service that processes them for me. No mailing lists. Please don't include passwords or payment details. <a href="privacy.html">Privacy notice</a></p>
+
+          <button class="button full" type="submit">Request a free quote</button>
+          <div class="form-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+        </form>
       </div>
     </div>
   </section>
@@ -262,6 +340,7 @@
       <a href="#process">Process</a>
       <a href="#faq">FAQ</a>
       <a href="mailto:paxlumeweb@gmail.com">Email</a>
+      <a href="privacy.html">Privacy</a>
     </div>
   </div>
   <div class="container">
