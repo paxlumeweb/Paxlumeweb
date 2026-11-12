@@ -9,3 +9,5 @@
 
 /* Larger tap targets without changing layout */
 body:not(.home) .demo-banner a{display:inline-block;padding:12px 6px;margin:-12px 0}body:not(.home) .footer .links a{display:inline-block;padding:12px 2px;margin:-12px -2px}body:not(.home) nav a{padding:12px 0;margin:-12px 0}
+/* Demo page colour themes and logo subtitle (moved out of inline styles so the CSP needs no 'unsafe-inline') */
+html.demo-greenedge{--bg:#f6f8f0;--ink:#163b2b;--accent:#486a47;--light:#dfe9cf;--line:#dbe6d6;--dark:#173a2b}html.demo-shineworks{--bg:#f2f7fb;--ink:#102b42;--accent:#16709a;--light:#deedf8;--line:#d7e8f0;--dark:#102d44}html.demo-brightpath{--bg:#fff9ee;--ink:#3a2b22;--accent:#a84f1c;--light:#f7e8cc;--line:#f2e2ca;--dark:#412c21}.demo-logo-sub{font-size:.65rem;font-weight:600;letter-spacing:0;display:block}

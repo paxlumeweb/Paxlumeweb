@@ -29,6 +29,8 @@ This file is not part of the website: the build never copies it.
 3. Quote form on **previews**: switched off (`data-form-active="false"`). Visitors see the "please email" fallback. This stops previews sending enquiries and stops every new preview address triggering a FormSubmit activation email.
 4. Quote form on **main**: left on. The no-JavaScript thank-you redirect (`_next`) points at the Cloudflare deployment instead of GitHub Pages.
 
+5. Security headers on every page: a Content-Security-Policy (only the site's own files, plus FormSubmit for the form; no inline code allowed), `X-Frame-Options: DENY`, `nosniff`, a referrer policy, a permissions policy and HSTS. The `workers.dev` address always gets `noindex`, even after launch. The build fails if a page gains an inline `<style>`, `style="..."`, inline `<script>` or `on...=""` handler, because the CSP would block it. GitHub Pages can't send these headers.
+
 Optional settings (Cloudflare project > Settings > Variables and Secrets). **Leave both unset until the switch:**
 
 | Variable | Effect |
