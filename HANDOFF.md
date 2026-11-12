@@ -20,11 +20,11 @@ This file is not linked from the website. Note: this repo is public, so never pu
 
 ## Tasks from ChatGPT
 <!-- Add new tasks at the bottom. Format: - [ ] YYYY-MM-DD: what to do (why) -->
-- [ ] 2026-11-12 (superseded by the new embedded-form brief below): Audit and implement a mobile-friendly, accessible, $0 website enquiry form with spam safeguards and accurate privacy information, subject to owner approval and successful end-to-end tests (so prospective customers can request a quote without configuring an email app).
+- [x] 2026-11-12 (complete, superseded by embedded-form delivery): Audited the contact process and implemented an accessible, no-cost enquiry form; see PR #3 and the verified Gmail tests (to let customers request a quote without an email application).
 - [x] 2026-11-12 (done, merged in PR #2): Review the $250 Starter offer, FAQ, calls to action and contact journey; prepare a focused conversion-improvement proposal or preview covering clear inclusions, exclusions, hosting/domain responsibilities and next steps, without changing the approved navy/mint design until owner approval (to help win the first four paying customers).
 - [x] 2026-11-12 (done, fixes merged in PR #2): Check the deployed GitHub Pages site on mobile and desktop, including all three fictional demo links, navigation, accessibility, loading performance, metadata and enquiry buttons; document the test results and propose fixes via pull request for review (to avoid losing potential customers through technical problems).
 
-- [ ] 2026-11-12: Build a native-looking navy/mint quote-request form directly on the Paxlume homepage (not Google Forms), using a suitable no-cost form delivery service only after owner/guardian approval, and submit a preview pull request with a test plan and any activation steps (to collect enquiries through the website without exposing customer details).
+- [x] 2026-11-12 (done, merged in PR #3): Built the on-site navy/mint quote-request form with approved FormSubmit delivery, spam protection, thank-you and privacy pages; two Gmail tests passed and a live submission was accepted (to receive enquiries directly on the website).
 
 - [ ] 2026-11-12: Create a reusable Starter website project template and a complete staging-to-handover checklist (to deliver each $250 website reliably without copying private customer data into public repos).
 - [ ] 2026-11-12: Research and document an age-eligible, customer-owned hosting workflow for commercial one-page websites, comparing Cloudflare Pages and Netlify using current official terms, free plan limits, client ownership, domains, HTTPS and handover steps; do not create accounts or migrate the current site (to make customer publishing safe and predictable).
@@ -156,10 +156,18 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 
 ### Open decisions for owner and suitable adult
 - Confirm sole-trader/ABN/business-name eligibility and any required registration; authorise any associated fee (currently $47 for 1 year if required).
-- Decide approved way to receive customer payments and any guardian role, then review the quote/agreement/invoice and statutory rights.
+- Bank transfer is the owner's preferred payment method; confirm account suitability with the bank and parent/guardian, then review the quote/agreement/invoice, payment timing and statutory rights. No bank details in this public file.
 - Approve an enquiry service after its age/terms/privacy review and activation requirements; confirm test email delivery.
 - Agree on first-customer hosting provider and client-owned account setup.
 - Approve all outbound customer communications and any actual publishing/change of public business promises.
+
+## Owner payment decision — bank transfer (2026-11-12)
+- **Owner preference:** accept payments for Paxlume Starter websites by ordinary Australian bank transfer into the owner's nominated bank account, **if the bank confirms the account can receive business-related payments** and the arrangement is suitable for the owner's age/account terms. No payment processor or card checkout needs to be installed at this stage.
+- **PRIVACY / SECURITY:** The owner shared account details privately with ChatGPT. **Do not add, request, repeat, store, or commit any BSB, account number, account-holder identity or customer payment information to this public repository, `HANDOFF.md`, source HTML, JavaScript, screenshots, issues, pull requests, or public templates.** Account details belong only in a privately prepared invoice sent to an actual customer after the owner approves the invoice and independently verifies the payment instructions. Never request passwords, codes or banking login information.
+- **Public-site wording proposed for owner approval:** `Payment by bank transfer; payment details are supplied privately on your invoice.` This must not imply payment arrangements are active until the bank/account, business registration and service terms have been checked and approved. **Do not publish or change website payment copy without an explicit preview and owner approval.**
+- **Customer workflow:** agree in writing on scope, total amount (current Starter offer: A$250), deposit if any, invoice due date and cancellation/refund terms that comply with Australian Consumer Law. Deposit amount has **not** been approved (do not default to A$125). Use an accurate invoice template with seller details/ABN only when applicable, clearly identify GST correctly, and do not call an invoice a `tax invoice` unless GST-registered and the requirements are met.
+- **Payment confirmation:** owner independently checks cleared funds through their own trusted banking interface, not a customer screenshot or emailed receipt, before marking an invoice as paid or carrying out a payment-dependent milestone. Track payment status privately and keep transaction records out of the repo. Do not initiate, approve, request or receive funds on the owner's behalf.
+- **Claude next actions:** update the private-only quote/invoice and handover templates *conceptually* for bank transfer and invoice-based billing; provide any public-site wording as a PR preview, not a live edit. Document the remaining owner/guardian/bank decisions in `Questions for Ben`. Do not create checkout integrations or collect financial details through the website form.
 
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
@@ -176,6 +184,7 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - 2026-11-12: Ben said merge. PR #3 merged and deployed. The live page shows "Request a free quote", and the thank-you and privacy pages load. A final test with non-personal data was accepted by FormSubmit after going live.
 
 ## Questions for Ben
+- **Bank transfer checks:** Please confirm privately (without supplying details in GitHub or chat) that your bank allows this account to receive business payments, and with a parent/guardian agree the deposit/payment schedule and invoice wording before taking your first payment.
 _Earlier questions answered on 2026-11-12. The Google Forms question is replaced by the on-site form._
 1. **Reply promise:** the form and thank-you page only say "I'll reply by email", with no time limit. Do you want to promise a time, such as 2 business days?
 2. **Keeping enquiries:** the privacy page says enquiry emails are kept "only as long as needed". Do you want a fixed period instead, such as deleting enquiries that don't go ahead after 12 months?
