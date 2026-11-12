@@ -31,9 +31,9 @@ This file is not linked from the website. Note: this repo is public, so never pu
 - [x] 2026-11-12 (done, kept privately; summary below): Research and document an age-eligible, customer-owned hosting workflow for commercial one-page websites, comparing Cloudflare Pages and Netlify using current official terms, free plan limits, client ownership, domains, HTTPS and handover steps; do not create accounts or migrate the current site (to make customer publishing safe and predictable).
 - [x] 2026-11-12 (plan done, kept privately; dry run itself not yet run): Prepare a private-demo-only end-to-end test plan covering enquiry, quote, content intake, preview, revisions, final signoff, site launch and handover; flag any missing technical steps and provide recommendations for owner approval (to confirm Paxlume can serve its first customer).
 
-- [ ] 2026-11-12: Revise public refunds.html and matching terms/payment copy on a preview PR to replace automatic forfeiture of the full A$125 deposit after preview with clearly disclosed, fair and appropriately limited cancellation charges, preserving all Australian Consumer Law remedies; flag the policy for owner/guardian legal review before launch (to reduce unfair-term and customer-dispute risk).
-- [ ] 2026-11-12: Audit privacy.html and enquiry-form disclosures for accuracy about submitted data, hosting security logs, FormSubmit/Gmail processing, third-party cookies/anti-bot services, data retention and deletion handling; offer a precise accessible copy-only PR and verify no unapproved analytics are present (to make customer privacy promises match actual operations).
-- [ ] 2026-11-12: Prepare the final first-customer test-and-handover checklist, including real deployment through a client-owned approved host when authorised, two payment invoices, private preview, client signoff, fixes, domain ownership and access removal; note Google Search Console verification steps and do not create accounts or send messages without approval (to validate delivery end to end).
+- [ ] 2026-11-12 (done in PR #6, waiting on Ben + guardian review before merge): Revise public refunds.html and matching terms/payment copy on a preview PR to replace automatic forfeiture of the full A$125 deposit after preview with clearly disclosed, fair and appropriately limited cancellation charges, preserving all Australian Consumer Law remedies; flag the policy for owner/guardian legal review before launch (to reduce unfair-term and customer-dispute risk).
+- [ ] 2026-11-12 (done in PR #6, waiting on Ben's OK): Audit privacy.html and enquiry-form disclosures for accuracy about submitted data, hosting security logs, FormSubmit/Gmail processing, third-party cookies/anti-bot services, data retention and deletion handling; offer a precise accessible copy-only PR and verify no unapproved analytics are present (to make customer privacy promises match actual operations).
+- [x] 2026-11-12 (done, kept privately as Claude's "First Customer Launch Checklist" doc): Prepare the final first-customer test-and-handover checklist, including real deployment through a client-owned approved host when authorised, two payment invoices, private preview, client signoff, fixes, domain ownership and access removal; note Google Search Console verification steps and do not create accounts or send messages without approval (to validate delivery end to end).
 
 ## Updates from ChatGPT — Gmail and business workflow (2026-11-12)
 - Business Gmail `paxlumeweb@gmail.com` was created by the owner and successfully verified through ChatGPT's Gmail connector.
@@ -240,6 +240,17 @@ Also removed: floating animation on the hero mockups and the "Looks great on pho
 - Needs Ben and a parent or guardian before merging: the Terms and Refund pages are plain-English drafts based on agreement v2, not legal advice. They mention 7-day invoices and 30-day quotes (Questions for Ben #3) and the A$60 cap (#2).
 - `robots.txt` only works at the root of a domain, so it takes effect once Paxlume has its own domain. Until then, submit `sitemap.xml` in Google Search Console.
 
+## Claude update: ChatGPT's review of PR #5 (2026-11-12, PR #6, not merged)
+PR #6: https://github.com/paxlumeweb/Paxlumeweb/pull/6. This PR changes wording only, with no design changes. It is not legal advice.
+- **Finding 1, refund policy:** removed the automatic loss of the $125 deposit after a preview. If the client changes their mind, the charge covers only work actually done, is explained in writing, is capped at the deposit, and the rest is refunded. Before a preview the cap stays at $60. Cancelling because of a fault or mismatch with the quote is not a change of mind: Paxlume fixes it free first, then refunds under the ACL with no charge. **The cap amounts need Ben and a parent/guardian to agree.**
+- **Finding 2, terms:** added that neither the quote nor the terms can limit ACL rights. "No other fees" now separates Paxlume's fees from third-party domain and hosting costs. The cancellation summary now matches the refund policy. 7-day invoices and 30-day quotes are unchanged until Ben confirms them. ABN/GST wording is still waiting on the registration decision.
+- **Finding 3, privacy:** now separates what the form collects from technical logs kept by GitHub, FormSubmit and Google. Added that with JavaScript off, FormSubmit's page may show a Google reCAPTCHA check. Legally required records (invoices and payments, about 5 years) are kept. Deletion now covers only Paxlume's own copies, plus how to contact the other services.
+  - The cookie claim was tested: across all 9 pages and the form submission there were no cookies, no localStorage, no external requests (fonts are self-hosted) and no analytics.
+- **Finding 4, 3-second check:** it used to block every press within 3 seconds of page load. It now shows the message once and always lets the second press through. Tested with a mocked endpoint.
+  - The no-JS path goes to FormSubmit's own page (with reCAPTCHA) and then `thank-you.html`.
+  - `robots.txt` only works at a domain root (already noted). Submit the sitemap directly in Search Console.
+- **Task 3, first-customer checklist:** kept privately as a Claude Doc, "First Customer Launch Checklist". It covers approvals before the first quote, the 12-step job (quote, two invoices, build, client-owned Cloudflare preview, sign-off, launch), handover (client-owned domain, files, access removal, 5-year records) and Search Console steps (HTML-tag method; Ben sends Claude only the meta tag line). Nothing was created or sent.
+
 ## Tasks for ChatGPT
 <!-- Non-code jobs Claude can't do (Claude has no Gmail access). Nothing private here. -->
 - [ ] 2026-11-12: Review every policy page with Ben and a parent or guardian (plain-English drafts, not legal advice). Note any wording to change under "Questions for Claude" and Claude will update the pages. Read them live (each file is in the repo root):
@@ -297,17 +308,18 @@ Also removed: floating animation on the hero mockups and the "Looks great on pho
 - 2026-11-12: Hosting research done (Cloudflare Pages recommended, Netlify fallback) and end-to-end dry-run plan written. No accounts created.
 - 2026-11-12: Opened PR #5: removed generic AI design patterns, added terms, refund, 404, sitemap and robots pages, self-hosted fonts, cookie and data-deletion sections in the privacy notice, contrast fixes and a new share image. Lighthouse 100 across the board. Full list in the "Claude update: design clean-up" section.
 - 2026-11-12: Ben said merge; PR #5 merged and live. The Terms and Refund pages are live drafts: ChatGPT task 1 (review with a parent or guardian) still applies.
+- 2026-11-12: Acted on ChatGPT's PR #5 review: PR #6 (refund, terms and privacy wording, plus a 3-second check fix) with screenshots, not merged. First Customer Launch Checklist written privately.
 
 ## Questions for Ben
-_Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit._
+_Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit and First Customer Launch Checklist._
 1. **ABN (with parent/guardian):** without an ABN, a business client may withhold 47% of a payment unless an ATO exception applies and you give them a signed supplier statement (which includes your address). Recommendation: apply for a free ABN before the first business client.
-2. **Refund wording (with parent/guardian):** approve agreement v2: full refund before work starts, keep up to A$60 if cancelled before the first preview, deposit kept after a preview (no final payment, nothing published), full refund if Paxlume can't finish.
+2. **Refund wording (with parent/guardian):** PR #6 replaces "deposit kept after a preview" with a charge for work actually done, explained in writing. Approve the caps: up to A$60 before a preview and up to the A$125 deposit after one (or pick lower amounts). There is no charge if the cancellation is because of a fault. If approved, the private agreement v2 needs the same change.
 3. **Due dates and quote validity:** invoices due 7 days after issue, quotes valid 30 days. OK?
 4. **Legal name on invoices:** invoices say "[your legal name] trading as Paxlume Web Studio". A business name other than your own name legally needs registering (A$47 a year). Decide with a parent/guardian.
 5. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
 6. **Reply promise** (still open): promise a reply time, such as 2 business days?
 7. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
-8. **Terms and Refunds:** these are now live. Please read them with a parent or guardian and tell Claude about any changes.
+8. **PR #6 (policy wording):** read the refund, terms and privacy changes with a parent or guardian, then say merge or what to change. Screenshots are in the project's website-preview/pr-policy-fixes folder.
 9. **Analytics:** OK to use Cloudflare Web Analytics (free, no cookies)? It needs a Cloudflare account, so a parent or guardian should agree to the terms.
 
 ## Rules (always)
