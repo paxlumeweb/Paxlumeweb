@@ -116,7 +116,7 @@ Copy-only changes, using the existing sections and styles:
 8. **Report back.** Explain which delivery service you recommend and why, what you built, the PR link, screenshots, exact activation/approval steps (ideally just a confirmation email or one account-authorised step), what is blocked, and whether it is deployed. Update `Questions for Ben` with only necessary decisions; ask about any promises (e.g. 2-business-day reply time or 12-month deletion) rather than silently assuming them. Do not contact customers, spend money or publish large design changes without the owner's approval.
 
 ### Claude's progress on the on-site quote form (2026-11-12)
-- **Status:** built as a draft in PR #3 (https://github.com/paxlumeweb/Paxlumeweb/pull/3). **Not merged and not live.** The form is switched off (`data-form-active="false"`) and the live site still uses the email button, which works as before.
+- **Status: LIVE** (PR #3 merged 2026-11-12 with Ben's OK). To switch the form off quickly, set `data-form-active="false"` in `index.html`; visitors then see the email fallback.
 - **Recommended service: FormSubmit (formsubmit.co).** It needs no account or password: activation is one confirmation email to paxlumeweb@gmail.com. It has no API key, is free with no stated submission cap, supports a JSON (AJAX) response, a honeypot, reCAPTCHA and a reply-to field, and says it keeps submissions for 30 days.
   - Caveats: it has no separate terms of service page (only a 2019 privacy/terms PDF), and its minimum age and commercial-use position couldn't be verified.
 - **Fallback: Web3Forms.** You get a free access key by email (safe to put in public HTML) and 250 submissions a month. Caveats: its terms pages couldn't be loaded, and it keeps submissions for up to 3 years by default (can be shortened to 7 days in its dashboard).
@@ -173,13 +173,13 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - 2026-11-12: Designed the Google Forms quote form for Ben to build (private build guide). Checked GitHub Pages terms: fine for Paxlume's portfolio, not recommended for customer sites.
 - 2026-11-12: Built the on-site quote form (fields, validation, honeypot, FormSubmit delivery, thank-you and privacy pages) as draft PR #3, switched off until activation and tests. The Google Forms plan was dropped per the owner instruction. Screenshots are kept privately in the project files.
 - 2026-11-12: Ben approved FormSubmit. Sent the activation test, and Ben activated the form for paxlumeweb.github.io. PR #3 now uses FormSubmit's alias address and the form is switched on (still not merged). Two test enquiries with non-personal data (desktop and phone labels) arrived in the business Gmail with the right subject and fields; Ben confirmed by screenshot. The error message was also checked with a real refused submission. Note: FormSubmit's free emails include a small sponsor ad. Remaining: Ben's merge OK, then one final submission from the live site.
+- 2026-11-12: Ben said merge. PR #3 merged and deployed. The live page shows "Request a free quote", and the thank-you and privacy pages load. A final test with non-personal data was accepted by FormSubmit after going live.
 
 ## Questions for Ben
 _Earlier questions answered on 2026-11-12. The Google Forms question is replaced by the on-site form._
-1. **Quote form:** tests passed. Say "merge" to put the form live on the website (PR #3).
-2. **Reply promise:** the form and thank-you page only say "I'll reply by email", with no time limit. Do you want to promise a time, such as 2 business days?
-3. **Keeping enquiries:** the privacy page says enquiry emails are kept "only as long as needed". Do you want a fixed period instead, such as deleting enquiries that don't go ahead after 12 months?
-4. **Customer hosting:** OK for Claude to compare Cloudflare Pages and Netlify terms before the first paying customer? (Research only, no sign-ups.)
+1. **Reply promise:** the form and thank-you page only say "I'll reply by email", with no time limit. Do you want to promise a time, such as 2 business days?
+2. **Keeping enquiries:** the privacy page says enquiry emails are kept "only as long as needed". Do you want a fixed period instead, such as deleting enquiries that don't go ahead after 12 months?
+3. **Customer hosting:** OK for Claude to compare Cloudflare Pages and Netlify terms before the first paying customer? (Research only, no sign-ups.)
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.
