@@ -1,34 +1,29 @@
 #!/usr/bin/env bash
-# Builds the public website into dist/ for Cloudflare Pages.
+# Builds the public website into dist/ for Cloudflare (Workers or Pages).
 #
 # Only files on the allowlist below are copied, so internal files in this repo
 # (HANDOFF.md, README.md, CLOUDFLARE.md, starter-template/, scripts/, .git...)
 # are never served by Cloudflare. GitHub Pages is NOT affected by this script:
-# it still serves the repo root as before.
+# it still serves the repo root.
 #
 # Run locally:   bash scripts/build-site.sh     (then open dist/index.html)
 #
-# Settings (Cloudflare dashboard > project > Settings > Variables, all optional):
-#   PAXLUME_INDEXABLE=yes   Let search engines index the Cloudflare copy.
-#                           Default: every response gets "X-Robots-Tag: noindex",
-#                           so the Cloudflare copy can't compete with GitHub Pages.
-#                           Only set this when Ben approves the switch.
-#   PAXLUME_SITE_URL=...    Final public address, e.g. https://paxlumeweb.pages.dev/
-#                           Rewrites canonical, Open Graph, sitemap and robots URLs
-#                           from the GitHub Pages address to this one. Only set it
-#                           at switch time (see CLOUDFLARE.md, step 5).
-# Cloudflare sets these itself during a build:
-#   CF_PAGES_BRANCH         Branch being built. Anything other than "main" is a
-#                           preview: the quote form is switched off there (visitors
-#                           see the email fallback) so previews never send enquiries
-#                           or trigger FormSubmit activation emails.
-#   CF_PAGES_URL            This deployment's own address, used for the no-JavaScript
-#                           form's thank-you redirect on main builds.
+# Branches (Cloudflare sets CF_PAGES_BRANCH or WORKERS_CI_BRANCH during a build):
+#   main        Production (https://paxlume.net). Quote form on. Indexable ONLY
+#               when PAXLUME_INDEXABLE=yes is set (launch step, Ben approves).
+#   any other   Preview. Every page gets "X-Robots-Tag: noindex" and the quote
+#               form is switched off (visitors see the email fallback), so previews
+#               never compete in search, send enquiries or trigger FormSubmit
+#               activation emails.
+# Setting (Cloudflare > Worker > Settings > Build > Variables and secrets):
+#   PAXLUME_INDEXABLE=yes   Let search engines index production. Leave unset
+#                           until launch is approved and verified; remove it to
+#                           go back to noindex. Previews and the workers.dev
+#                           address are always noindex.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 OUT=dist
-GH_URL="https://paxlumeweb.github.io/Paxlumeweb/"
 
 # ---- 1. The allowlist: everything the public site needs, nothing else --------
 PAGES="index.html greenedge.html shineworks.html brightpath.html privacy.html terms.html refunds.html thank-you.html 404.html"
@@ -61,32 +56,17 @@ sed -i 's#="/Paxlumeweb/#="/#g' "$OUT/404.html"
 
 # Pages sets CF_PAGES_BRANCH; Workers Builds sets WORKERS_CI_BRANCH.
 BRANCH="${CF_PAGES_BRANCH:-${WORKERS_CI_BRANCH:-local}}"
-if [ "$BRANCH" = "main" ]; then
-  # Keep no-JavaScript form visitors on the same host after sending.
-  if [ -n "${CF_PAGES_URL:-}" ] && [ -z "${PAXLUME_SITE_URL:-}" ]; then
-    sed -i "s#name=\"_next\" value=\"${GH_URL}thank-you.html\"#name=\"_next\" value=\"${CF_PAGES_URL%/}/thank-you.html\"#" "$OUT/index.html"
-  fi
-else
-  # Preview (or local) build: switch the quote form off.
+if [ "$BRANCH" != "main" ]; then
   sed -i 's#data-form-active="true"#data-form-active="false"#' "$OUT/index.html"
   echo "Preview build ($BRANCH): quote form switched off, visitors see the email fallback."
 fi
 
-if [ -n "${PAXLUME_SITE_URL:-}" ]; then
-  SITE="${PAXLUME_SITE_URL%/}/"
-  case "$SITE" in https://*) ;; *) fail "PAXLUME_SITE_URL must start with https://" ;; esac
-  grep -rl "$GH_URL" "$OUT" --include=*.html --include=*.xml --include=*.txt | xargs -r sed -i "s#${GH_URL}#${SITE}#g"
-  echo "Public URLs rewritten to $SITE"
-fi
-
 # ---- 3. Cloudflare _headers ----------------------------------------------------
-# Cloudflare already adds noindex to preview URLs. This also covers the
-# production *.pages.dev address until Ben approves the switch.
-if [ "${PAXLUME_INDEXABLE:-}" = "yes" ]; then
-  echo "Indexable build: search engines may index this deployment."
+if [ "$BRANCH" = "main" ] && [ "${PAXLUME_INDEXABLE:-}" = "yes" ]; then
+  echo "Production build, indexable: search engines may index this deployment."
 else
   printf '/*\n  X-Robots-Tag: noindex\n' > "$OUT/_headers"
-  echo "Staging build: every page is sent with X-Robots-Tag: noindex."
+  echo "Preview/noindex build: every page is sent with X-Robots-Tag: noindex."
 fi
 
 # ---- 3b. Security headers (every Cloudflare build) -----------------------------
