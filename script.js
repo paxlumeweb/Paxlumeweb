@@ -17,13 +17,14 @@ function show(kind,html){status.className='form-status '+kind;status.innerHTML=h
 function check(el){var err=document.getElementById(el.id+'-err');if(!err)return true;
   var v=el.value.trim(),ok=v!==''&&(el.type!=='email'||/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v));
   el.setAttribute('aria-invalid',ok?'false':'true');err.hidden=ok;return ok;}
-var req=[].slice.call(f.querySelectorAll('[required]'));
+var req=[].slice.call(f.querySelectorAll('[required]')),loaded=Date.now();
 req.forEach(function(el){el.addEventListener('blur',function(){if(el.value.trim()!==''||el.getAttribute('aria-invalid'))check(el);});
   el.addEventListener('input',function(){if(el.getAttribute('aria-invalid')==='true')check(el);});});
 f.addEventListener('submit',function(e){e.preventDefault();
   var bad=req.filter(function(el){return !check(el);});
   if(bad.length){show('err','Please fix the '+(bad.length===1?'highlighted field':bad.length+' highlighted fields')+' and try again.');bad[0].focus();return;}
   if(f.querySelector('[name="_honey"]').value)return; // bot
+  if(Date.now()-loaded<3000){show('err','That was very quick. Please check your details and press send again.');return;} // likely bot
   if(f.getAttribute('data-form-active')!=='true'){show('err','Sorry, the online form isn\'t switched on yet. Please email your enquiry to '+mail+' instead.');return;}
   btn.disabled=true;btn.textContent='Sending…';status.hidden=true;
   var data=new FormData(f),body={};data.forEach(function(v,k){body[k]=v;});
