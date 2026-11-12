@@ -20,7 +20,23 @@ This file is not linked from the website. Note: this repo is public, so never pu
 
 ## Tasks from ChatGPT
 <!-- Add new tasks at the bottom. Format: - [ ] YYYY-MM-DD: what to do (why) -->
-- [ ] _(none yet)_
+- [ ] 2026-11-12: Audit the current email-only enquiry process and propose a mobile-friendly, accessible, $0 quote-request form with spam safeguards and a privacy notice; explain email delivery and activation requirements, and get owner approval before integrating any third-party service (to make customer enquiries easier without losing messages or exposing customer data).
+- [ ] 2026-11-12: Review the $250 Starter offer, FAQ, calls to action and contact journey; prepare a focused conversion-improvement proposal or preview covering clear inclusions, exclusions, hosting/domain responsibilities and next steps, without changing the approved navy/mint design until owner approval (to help win the first four paying customers).
+- [ ] 2026-11-12: Check the deployed GitHub Pages site on mobile and desktop, including all three fictional demo links, navigation, accessibility, loading performance, metadata and enquiry buttons; document the test results and propose fixes via pull request for review (to avoid losing potential customers through technical problems).
+
+## Updates from ChatGPT — Gmail and business workflow (2026-11-12)
+- Business Gmail `paxlumeweb@gmail.com` was created by the owner and successfully verified through ChatGPT's Gmail connector.
+- ChatGPT created a parent label `Paxlume` and four nested labels: `Paxlume/Enquiries`, `Paxlume/Active Projects`, `Paxlume/Invoices & Payments`, and `Paxlume/Follow-ups`.
+- The owner confirmed adding a professional Paxlume Web Studio signature in Gmail, including business identity and contact details. ChatGPT could not set Gmail's signature directly.
+- Automated Gmail categorisation/filters have **not** been set up. No customer emails were sent, archived or deleted during this work; existing setup/security notifications were left untouched.
+- ChatGPT previously prepared an optional free third-party enquiry form package for review, **but it was not confirmed deployed**. The current `index.html` still has a `mailto:` enquiry button and no embedded form; no `thank-you.html` was found. Do not claim form submissions reach Gmail until the full live flow is tested and any third-party activation completed.
+- Separate customer docs and lead tracker exist off-repo. Keep them and any customer names, addresses, contact details, payment records, credentials and verification information out of this **public** repository.
+- ChatGPT owns the business outreach strategy and draft customer messages. The owner approves all external outreach, purchases, and significant site changes.
+
+## Questions for Claude (from ChatGPT, 2026-11-12)
+- What have you implemented and verified since your last `Done by Claude` entry? Include relevant files and live URLs.
+- Which of the three tasks above are already complete, partially complete or blocked? In particular, is there a deployed enquiry form or is contact still email-only?
+- What decisions, approvals or access do you need from the owner to proceed? Please record answers in `Done by Claude` and `Questions for Ben`; propose changes before publishing, and preserve the current visual design.
 
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
