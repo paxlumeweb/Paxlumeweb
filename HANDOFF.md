@@ -13,6 +13,7 @@ This file is not linked from the website. Note: this repo is public, so never pu
 - Business: Paxlume Web Studio, a small Brisbane web design business. Slogan "Websites made simple."
 - Goal right now: first $1,000 AUD (4 x $250 Starter websites) with a $0 budget.
 - Website is live: https://paxlumeweb.github.io/Paxlumeweb/ (deploys automatically from the `main` branch).
+- Cloudflare Pages: Git-connected staging deployment merged in PR #7 (see `CLOUDFLARE.md`). Waiting on Ben to connect Cloudflare to GitHub. Not the public site.
 - Pages: `index.html` (homepage), `privacy.html`, `thank-you.html`, `terms.html`, `refunds.html`, `404.html`, plus three demo sites: `greenedge.html` (GreenEdge Lawn Care), `shineworks.html` (ShineWorks Auto Detailing), `brightpath.html` (BrightPath Tutoring). The demos are fictional and labelled as samples.
 - Brand: navy `#101D2C`, mint `#65D6BA`, white.
 - Done: site fixed and verified, homepage redesign + FAQ, GitHub workflow, business email set up, customer docs and lead tracker (kept privately, not in this repo).
@@ -253,6 +254,23 @@ PR #6: https://github.com/paxlumeweb/Paxlumeweb/pull/6. This PR changes wording 
   - `robots.txt` only works at a domain root (already noted). Submit the sitemap directly in Search Console.
 - **Task 3, first-customer checklist:** kept privately as a Claude Doc, "First Customer Launch Checklist". It covers approvals before the first quote, the 12-step job (quote, two invoices, build, client-owned Cloudflare preview, sign-off, launch), handover (client-owned domain, files, access removal, 5-year records) and Search Console steps (HTML-tag method; Ben sends Claude only the meta tag line). Nothing was created or sent.
 
+## Claude update: Cloudflare Pages automatic deployment (2026-11-12, PR #7, merged)
+PR #7 prepares a **staging** Cloudflare Pages deployment from GitHub. The public site, its canonical URLs, form, sitemap and GitHub Pages are unchanged. Full steps, limits and rollback: `CLOUDFLARE.md`.
+- **Build (ChatGPT finding 3):** `bash scripts/build-site.sh` copies an allowlist of 9 pages plus CSS, JS, fonts, images, robots and sitemap into `dist/`; Cloudflare serves only `dist/`. `HANDOFF.md`, `README.md`, `CLOUDFLARE.md`, `starter-template/` and `scripts/` are never served. The build fails if an internal file reaches `dist/`, a local link or asset is broken, or a new root page isn't on the allowlist. No framework or dependencies.
+- **Paths (finding 4):** the build rewrites `404.html`'s `/Paxlumeweb/` links to `/` in `dist/` only, so the source still works on GitHub Pages. Tested: 404 page renders with styles and fonts at the site root, no failed requests on any page (desktop and phone).
+- **SEO (finding 5):** every Cloudflare response gets `X-Robots-Tag: noindex` (Cloudflare adds this to previews itself; the build adds it to the production `pages.dev` address too). Canonicals still point to GitHub Pages. One canonical, one sitemap, one Search Console property until Ben approves a switch. Two optional variables, `PAXLUME_INDEXABLE` and `PAXLUME_SITE_URL`, exist for switch time; leave them unset.
+- **Form:** previews switch the quote form off (email fallback shows), so previews never send enquiries or trigger FormSubmit activation emails. On `main` the form stays on and the no-JS thank-you redirect stays on the Cloudflare host. FormSubmit approves each website address separately, so the Cloudflare address will need one activation click by Ben (step 3 in `CLOUDFLARE.md`).
+- **Finding:** GitHub Pages serves every file in the repo, so `HANDOFF.md`, `README.md` and `starter-template/` can be opened on the github.io site today. Nothing private is in them (the repo is public), and the Cloudflare build fixes it once Cloudflare becomes the public host.
+- **Cost:** Cloudflare Pages Free plan, A$0, 500 builds a month. Excluding `HANDOFF.md` with build watch paths keeps handoff commits from using builds.
+- **Not done (needs Ben):** connecting Cloudflare to GitHub, merging, the FormSubmit test, and any switch of the public address.
+
+### Steps needing Ben's approval, in order
+1. ~~Review PR #7~~ Done: Ben said merge on 2026-11-12.
+2. With a parent or guardian, connect Cloudflare to GitHub: `CLOUDFLARE.md` step 1 (new project, **only** the Paxlumeweb repository, build command `bash scripts/build-site.sh`, output `dist`). Leave `paxlume-hosting-test` alone. Tell Claude the `pages.dev` address; never share tokens or passwords.
+3. Claude checks the preview build. Ben looks at the preview on phone and computer and says merge.
+4. Form test on the Cloudflare address: one activation click in Gmail, then a test enquiry (step 3).
+5. Later and separately: whether and when to switch the public site, and to which address (step 5). A custom domain would cost money.
+
 ## Tasks for ChatGPT
 <!-- Non-code jobs Claude can't do (Claude has no Gmail access). Nothing private here. -->
 - [ ] 2026-11-12: Review every policy page with Ben and a parent or guardian (plain-English drafts, not legal advice). Note any wording to change under "Questions for Claude" and Claude will update the pages. Read them live (each file is in the repo root):
@@ -336,6 +354,8 @@ PR #6: https://github.com/paxlumeweb/Paxlumeweb/pull/6. This PR changes wording 
 - 2026-11-12: Ben said merge; PR #5 merged and live. The Terms and Refund pages are live drafts: ChatGPT task 1 (review with a parent or guardian) still applies.
 - 2026-11-12: Acted on ChatGPT's PR #5 review: PR #6 (refund, terms and privacy wording, plus a 3-second check fix) with screenshots, not merged. First Customer Launch Checklist written privately.
 - 2026-11-12: Ben said merge. PR #6 merged; refund, terms and privacy changes confirmed live.
+- 2026-11-12: Prepared the Cloudflare Pages automatic deployment (PR #7, staging only): allowlist build into `dist/`, internal files excluded, noindex on Cloudflare, previews with the form off, `CLOUDFLARE.md` with Ben's setup steps, form test and rollback. Public site unchanged.
+- 2026-11-12: Ben said merge; PR #7 merged. Next: Ben connects Cloudflare (CLOUDFLARE.md step 1). Because the build script is now on `main`, the first Cloudflare build should succeed straight away.
 
 ## Questions for Ben
 _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit and First Customer Launch Checklist._
@@ -346,7 +366,8 @@ _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Deliver
 5. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
 6. **Reply promise** (still open): promise a reply time, such as 2 business days?
 7. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
-8. **Analytics:** OK to use Cloudflare Web Analytics (free, no cookies)? It needs a Cloudflare account, so a parent or guardian should agree to the terms.
+8. **Cloudflare connection (with parent/guardian):** OK to connect a new Cloudflare Pages project to the Paxlumeweb repository (only that repository) as a staging copy? Steps in `CLOUDFLARE.md`. Free, and the public site doesn't move.
+9. **Analytics:** OK to use Cloudflare Web Analytics (free, no cookies)? It needs a Cloudflare account, so a parent or guardian should agree to the terms.
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.
