@@ -111,6 +111,20 @@ Copy-only changes, using the existing sections and styles:
 7. **Acceptance tests.** After service activation with approval, run at least two real test enquiries (desktop and mobile) using **non-personal test data**; verify they actually arrive in business Gmail including spam check, that recipient, subject/reply-to and thank-you/error states work, that validation and anti-spam work without breaking access, and that the email fallback remains functional. Get owner confirmation of email receipt before calling the feature live; don't publish the live form until tests pass. Log only non-sensitive test outcomes and file/PR links in `Done by Claude`.
 8. **Report back.** Explain which delivery service you recommend and why, what you built, the PR link, screenshots, exact activation/approval steps (ideally just a confirmation email or one account-authorised step), what is blocked, and whether it is deployed. Update `Questions for Ben` with only necessary decisions; ask about any promises (e.g. 2-business-day reply time or 12-month deletion) rather than silently assuming them. Do not contact customers, spend money or publish large design changes without the owner's approval.
 
+### Claude's progress on the on-site quote form (2026-11-12)
+- **Status:** built as a draft in PR #3 (https://github.com/paxlumeweb/Paxlumeweb/pull/3). **Not merged and not live.** The form is switched off (`data-form-active="false"`) and the live site still uses the email button, which works as before.
+- **Recommended service: FormSubmit (formsubmit.co).** It needs no account or password: activation is one confirmation email to paxlumeweb@gmail.com. It has no API key, is free with no stated submission cap, supports a JSON (AJAX) response, a honeypot, reCAPTCHA and a reply-to field, and says it keeps submissions for 30 days.
+  - Caveats: it has no separate terms of service page (only a 2019 privacy/terms PDF), and its minimum age and commercial-use position couldn't be verified.
+- **Fallback: Web3Forms.** You get a free access key by email (safe to put in public HTML) and 250 submissions a month. Caveats: its terms pages couldn't be loaded, and it keeps submissions for up to 3 years by default (can be shortened to 7 days in its dashboard).
+- Formspree was not chosen: it needs an account and allows only 50 submissions a month on the free plan.
+- **Owner steps to go live:**
+  1. Approve FormSubmit, and have a parent/guardian check its privacy/terms PDF (https://formsubmit.co/privacy.pdf).
+  2. Claude sends one activation submission using non-personal test data.
+  3. Ben clicks "Activate Form" in the email FormSubmit sends to paxlumeweb@gmail.com (check Spam). Ben replies with the random alias address shown in that email, which is not a secret.
+  4. Claude switches the form on and runs 2 test enquiries (desktop and phone).
+  5. Ben confirms both arrived.
+  6. Ben says merge.
+
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
 - 2026-11-12: Fixed and verified the live site, redesigned the homepage in navy/mint, added FAQ.
@@ -121,11 +135,14 @@ Copy-only changes, using the existing sections and styles:
 - 2026-11-12: Recorded Ben's 7 decisions. Opened PR #2 with the approved tap-target, share-image and demo metadata fixes plus the Starter wording (turnaround, ownership, FAQ, about line), with before/after screenshots. Not merged.
 - 2026-11-12: Ben approved PR #2; merged to main and live.
 - 2026-11-12: Designed the Google Forms quote form for Ben to build (private build guide). Checked GitHub Pages terms: fine for Paxlume's portfolio, not recommended for customer sites.
+- 2026-11-12: Built the on-site quote form (fields, validation, honeypot, FormSubmit delivery, thank-you and privacy pages) as draft PR #3, switched off until activation and tests. The Google Forms plan was dropped per the owner instruction. Screenshots are kept privately in the project files.
 
 ## Questions for Ben
-_Earlier questions 1–7 were answered on 2026-11-12 (see "Ben's decisions" above)._
-1. **Quote form:** build it from the build guide Claude shared in the project, run the two tests, then send Claude the form link. Please check two things in the privacy notice and messages: the "reply within 2 business days" promise, and deleting old enquiries after 12 months. Show the privacy notice to a parent/guardian.
-2. **Customer hosting:** before the first paying customer, OK for Claude to compare Cloudflare Pages and Netlify terms in detail and recommend one? (Research only, no sign-ups.)
+_Earlier questions answered on 2026-11-12. The Google Forms question is replaced by the on-site form._
+1. **Form service:** approve FormSubmit (recommended) or Web3Forms (fallback)? Please have a parent/guardian check its terms first. Once approved, Claude sends the activation test and you click Activate in Gmail.
+2. **Reply promise:** the form and thank-you page only say "I'll reply by email", with no time limit. Do you want to promise a time, such as 2 business days?
+3. **Keeping enquiries:** the privacy page says enquiry emails are kept "only as long as needed". Do you want a fixed period instead, such as deleting enquiries that don't go ahead after 12 months?
+4. **Customer hosting:** OK for Claude to compare Cloudflare Pages and Netlify terms before the first paying customer? (Research only, no sign-ups.)
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.
