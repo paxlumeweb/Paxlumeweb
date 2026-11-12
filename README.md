@@ -13,7 +13,7 @@ Static portfolio website for Paxlume Web Studio, with three **fictional demonstr
 | `shineworks.html` | Demo: ShineWorks Auto Detailing (fictional) |
 | `brightpath.html` | Demo: BrightPath Tutoring (fictional) |
 | `style.css` | Shared styles for every page |
-| `script.js` | Shared scripts (mobile menu, footer year, etc.) |
+| `script.js` | Shared scripts (footer year, demo contact forms) |
 | `favicon.svg` | Browser tab icon |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
 
