@@ -16,6 +16,7 @@ Static portfolio website for Paxlume Web Studio, with three **fictional demonstr
 | `script.js` | Shared scripts (footer year, demo contact forms) |
 | `favicon.svg` | Browser tab icon |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is |
+| `starter-template/` | Reusable one-page template for client Starter sites (placeholders only, never client data). See its README |
 
 All pages sit at the repository root and link to each other with relative paths (for example `greenedge.html`, not `/greenedge.html`). Keep it that way: the site is served from the `/Paxlumeweb/` subfolder, and paths are case-sensitive.
 
