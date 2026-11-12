@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://paxlumeweb.github.io/Paxlumeweb/sitemap.xml
+Sitemap: https://paxlume.net/sitemap.xml

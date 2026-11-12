@@ -1,4 +1,4 @@
-# Cloudflare Pages deployment (staging)
+# Cloudflare deployment
 
 This is how the Paxlume website deploys to Cloudflare Pages automatically from GitHub.
 It runs **alongside** GitHub Pages. Nothing here changes the public site at
@@ -25,18 +25,17 @@ This file is not part of the website: the build never copies it.
 **What the build changes in `dist/` only** (the source files stay exactly as GitHub Pages needs them):
 
 1. `404.html`: `/Paxlumeweb/...` links become `/...`, because on Cloudflare the site sits at the domain root.
-2. Search engines: every response gets `X-Robots-Tag: noindex` (via a generated `_headers` file). Cloudflare already does this for previews; this also covers the production `pages.dev` address so it can't compete with GitHub Pages. Canonical tags still point to GitHub Pages as a second safeguard.
+2. Search engines: every response gets `X-Robots-Tag: noindex` (via a generated `_headers` file) unless the `PAXLUME_INDEXABLE=yes` build variable is set on a `main` build. That variable is the launch switch and stays unset until Ben approves. Previews and the `workers.dev` address are always noindex.
 3. Quote form on **previews**: switched off (`data-form-active="false"`). Visitors see the "please email" fallback. This stops previews sending enquiries and stops every new preview address triggering a FormSubmit activation email.
-4. Quote form on **main**: left on. The no-JavaScript thank-you redirect (`_next`) points at the Cloudflare deployment instead of GitHub Pages.
+4. Quote form on **main**: left on. The no-JavaScript thank-you redirect (`_next`) points at `https://paxlume.net/thank-you`.
 
 5. Security headers on every page: a Content-Security-Policy (only the site's own files, plus FormSubmit for the form; no inline code allowed), `X-Frame-Options: DENY`, `nosniff`, a referrer policy, a permissions policy and HSTS. The `workers.dev` address always gets `noindex`, even after launch. The build fails if a page gains an inline `<style>`, `style="..."`, inline `<script>` or `on...=""` handler, because the CSP would block it. GitHub Pages can't send these headers.
 
-Optional settings (Cloudflare project > Settings > Variables and Secrets). **Leave both unset until the switch:**
+Build variable (Worker > Settings > Build > Variables and secrets). **Leave unset until launch is approved:**
 
 | Variable | Effect |
 |---|---|
-| `PAXLUME_INDEXABLE=yes` | Removes the noindex header |
-| `PAXLUME_SITE_URL=https://...` | Rewrites canonical, Open Graph, sitemap, robots and form redirect URLs to this address |
+| `PAXLUME_INDEXABLE=yes` | Production (`main`) pages on paxlume.net may be indexed. Remove it and redeploy to go back to noindex |
 
 Run it yourself: `bash scripts/build-site.sh`, then open `dist/index.html`. A local build behaves like a preview (form off).
 
@@ -103,17 +102,29 @@ Don't test the quote form until Claude has checked the Worker after this setup. 
 - Merging to `main` updates both GitHub Pages and the Cloudflare staging address.
 - A new page must be added to the allowlist in `scripts/build-site.sh` (the build fails and says so if it's forgotten).
 
-## Step 5. Switching the public site (later, separate approval needed)
+## Step 5. Launching on paxlume.net (every step marked APPROVAL needs Ben's OK)
 
-Not part of this PR. Do none of this without Ben's go-ahead:
+`paxlume.net` was registered at Cloudflare Registrar on 2026-11-12 and uses Cloudflare's nameservers, so no DNS records need copying. GitHub Pages keeps working the whole time, so enquiries never stop.
 
-1. Decide the address: `<project>.pages.dev` (free) or a custom domain (costs money; Ben + guardian decide).
-2. A PR that changes canonical, Open Graph, sitemap, robots and `_next` URLs in the source to the new address, updates `privacy.html` to name Cloudflare as the host instead of GitHub, and updates README. (`PAXLUME_SITE_URL` can preview this on staging first.)
-3. Set `PAXLUME_INDEXABLE=yes` in Cloudflare and redeploy.
-4. Search Console: add the new address as a property, submit its `sitemap.xml`.
-5. GitHub Pages: keep it running for a few weeks with canonicals pointing to the new address, then replace it with redirect pages or switch it off. Don't do this first.
+**Before you start:** security PR merged, its headers checked on the workers.dev address, and 2-step verification on Gmail, GitHub and Cloudflare.
+
+1. **APPROVAL: connect the domain.** Worker `paxlumeweb` > **Settings** > **Domains & Routes** > **Add** > **Custom domain** > `paxlume.net`. Cloudflare creates the DNS record and HTTPS certificate (a few minutes). The site is now reachable at paxlume.net but still noindex, unlinked, and its canonicals point to GitHub Pages.
+2. **www to root.** DNS > add a **proxied** `A` record, name `www`, IPv4 `192.0.2.0` (a placeholder Cloudflare uses for redirect-only hostnames). Then **Rules** > **Create rule** > **Redirect Rules** > template **Redirect from WWW to Root** > Deploy. Check `https://www.paxlume.net/privacy` lands on `https://paxlume.net/privacy`.
+3. **Claude checks paxlume.net** (or Ben with securityheaders.com): HTTPS padlock, all 9 pages, 404 page, `/HANDOFF.md` 404, security headers, `X-Robots-Tag: noindex`.
+4. **APPROVAL: form test on paxlume.net.** Open `https://paxlume.net/#contact`, send one dummy enquiry ("Domain test" / "Test only"). If FormSubmit emails an activation request, click **Activate** (FormSubmit holds submissions until activation). Send a second test and check both reach Gmail. Don't continue until this works; GitHub Pages' form keeps working meanwhile.
+5. **APPROVAL: merge the domain PR.** Canonicals, Open Graph, sitemap, robots and the form's `_next` move to `https://paxlume.net/`, and the privacy notice names Cloudflare. GitHub Pages serves the same pages with canonicals pointing to paxlume.net. Production stays noindex.
+6. **Claude re-checks** canonicals, sitemap, robots, form `_next` and headers on paxlume.net.
+7. **APPROVAL: turn on indexing.** Worker > Settings > Build > Variables and secrets > add `PAXLUME_INDEXABLE` = `yes` > Save, then **Deployments** > retry the latest build (or merge any small PR). Check `X-Robots-Tag` is gone on paxlume.net but still present on workers.dev.
+8. **Search Console:** add a **Domain** property for `paxlume.net` (Cloudflare can add the verification record when asked), submit `https://paxlume.net/sitemap.xml`.
+9. **Optional:** Worker > **Settings** > **Domains & Routes**: turn off the `workers.dev` address (it's noindex either way).
+10. **About 2 weeks later (separate PR):** redirect pages for GitHub Pages, then Ben switches Pages to them. After that the repo can be made private (a free GitHub plan can't serve Pages from a private repo).
 
 ## Rollback
+
+- **Domain problem (steps 1 to 4):** remove the custom domain (Worker > Settings > Domains & Routes > ⋯ > Remove). The site was never promoted, and GitHub Pages is unchanged.
+- **Indexing turned on too early (step 7):** delete `PAXLUME_INDEXABLE` and redeploy. noindex is back within minutes.
+- **Domain PR problem (step 5):** revert the PR on GitHub (**Revert** button on the merged PR), then merge the revert. Both hosts go back to the GitHub Pages canonicals.
+- **Bad Worker deploy:** Worker > **Deployments** > pick the last good version > **Rollback**.
 
 - **Bad Cloudflare deploy:** Cloudflare project > **Deployments** > pick the last good one > **⋯ > Rollback to this deployment**. Takes seconds. GitHub Pages is unaffected either way.
 - **Pause:** Settings > Build > Branch control: turn off automatic production deployments, and set preview branches to None.
