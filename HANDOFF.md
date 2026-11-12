@@ -274,6 +274,11 @@ PR #7 prepares a **staging** Cloudflare Pages deployment from GitHub. The public
 ### Cloudflare check (2026-11-12, after merge)
 Cloudflare only offered Ben the **Worker** route (`paxlumeweb.paxlumeweb.workers.dev`), not Pages. Before any setup, the Worker served the whole repo (`HANDOFF.md`, `README.md`, `starter-template/`, `scripts/` returned 200) because it skipped the build script. Ben has switched its address off for now. PR #8 adds `wrangler.jsonc` (serve only `dist/`, Paxlume 404 page) and makes the build script read `WORKERS_CI_BRANCH`, so the Worker gets the same safeguards as Pages. Tested locally with `wrangler dev`. Ben then sets the Worker's build command (`CLOUDFLARE.md` step 1, "If Cloudflare only offers a Worker"). A workers.dev address always has two parts (worker name, then account subdomain). Don't test the form until Claude has checked the Worker.
 
+### Cloudflare progress and paxlume.net switch plan (2026-11-12)
+- PR #8 merged. The `paxlumeweb` Worker now builds from `main` with `bash scripts/build-site.sh` and serves only `dist/`. Verified on the workers.dev address: pages load, `HANDOFF.md`, `README.md` and `starter-template/` return 404, canonicals still point to GitHub Pages. (Earlier "200" reports for HANDOFF.md came from cached fetches before PR #8; re-check with a `?v=` query.)
+- Ben bought **paxlume.net** at Cloudflare Registrar (Cloudflare nameservers, renews 2027-11-12).
+- **Switch PR (draft, needs Ben's approval):** canonical, Open Graph, sitemap, robots and form `_next` move to `https://paxlume.net/` (clean URLs like `/privacy`). Production builds drop noindex, previews keep it. Privacy notice names Cloudflare as host. Steps in `CLOUDFLARE.md` step 5: connect domain and www redirect (Ben), merge, FormSubmit activation for paxlume.net (Ben), Claude checks, turn off workers.dev, Search Console Domain property, then GitHub Pages redirect pages about 2 weeks later.
+
 ## Tasks for ChatGPT
 <!-- Non-code jobs Claude can't do (Claude has no Gmail access). Nothing private here. -->
 - [ ] 2026-11-12: Review every policy page with Ben and a parent or guardian (plain-English drafts, not legal advice). Note any wording to change under "Questions for Claude" and Claude will update the pages. Read them live (each file is in the repo root):
@@ -406,8 +411,9 @@ _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Deliver
 5. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
 6. **Reply promise** (still open): promise a reply time, such as 2 business days?
 7. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
-8. **Cloudflare staging:** connected as a Worker (PRs #7 and #8), and it serves only website files (checked 10:53 UTC). Still to do, in the Cloudflare thread: the FormSubmit activation and test on that address. The public site stays on GitHub Pages until you approve a switch.
+8. **Cloudflare staging:** connected as a Worker (PRs #7 and #8), and it serves only website files (checked 10:53 UTC). The FormSubmit activation and test will now happen on paxlume.net after the switch instead. The public site stays on GitHub Pages until you approve a switch.
 9. **Analytics:** OK to use Cloudflare Web Analytics (free, no cookies)? It needs a Cloudflare account, so a parent or guardian should agree to the terms.
+10. **Switch to paxlume.net:** approve the switch PR after connecting the domain (CLOUDFLARE.md step 5)?
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.

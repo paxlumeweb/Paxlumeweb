@@ -2,7 +2,7 @@
 
 Static portfolio website for Paxlume Web Studio, with three **fictional demonstration** sites. Hosted on GitHub Pages.
 
-**Live site:** <https://paxlumeweb.github.io/Paxlumeweb/>
+**Live site:** <https://paxlume.net/> (Cloudflare). The old address <https://paxlumeweb.github.io/Paxlumeweb/> still works during the move.
 
 ## Files
 
@@ -26,7 +26,7 @@ All pages sit at the repository root and link to each other with relative paths 
 
 GitHub Pages deploys automatically from the `main` branch, `/ (root)` folder. Every push to `main` triggers the **pages build and deployment** workflow (see the Actions tab); the live site updates a minute or two after it succeeds.
 
-**Cloudflare Pages (staging, being set up):** a Git-connected Cloudflare Pages project builds the site with `bash scripts/build-site.sh` (output `dist/`). Pushes to `main` update the staging address; other branches and PRs get preview links. It is noindex and is not the public site yet. See [CLOUDFLARE.md](CLOUDFLARE.md). When you add a new page or asset, add it to the allowlist in `scripts/build-site.sh` too.
+**Cloudflare (main host):** the `paxlumeweb` Cloudflare Worker builds the site with `bash scripts/build-site.sh` (output `dist/`, see `wrangler.jsonc`). Pushes to `main` update https://paxlume.net; other branches get noindex preview links. See [CLOUDFLARE.md](CLOUDFLARE.md). When you add a new page or asset, add it to the allowlist in `scripts/build-site.sh` too.
 
 ## Rules
 

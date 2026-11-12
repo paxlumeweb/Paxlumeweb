@@ -1,4 +1,4 @@
-# Cloudflare Pages deployment (staging)
+# Cloudflare deployment
 
 This is how the Paxlume website deploys to Cloudflare Pages automatically from GitHub.
 It runs **alongside** GitHub Pages. Nothing here changes the public site at
@@ -101,15 +101,27 @@ Don't test the quote form until Claude has checked the Worker after this setup. 
 - Merging to `main` updates both GitHub Pages and the Cloudflare staging address.
 - A new page must be added to the allowlist in `scripts/build-site.sh` (the build fails and says so if it's forgotten).
 
-## Step 5. Switching the public site (later, separate approval needed)
+## Step 5. Switching the public site to paxlume.net
 
-Not part of this PR. Do none of this without Ben's go-ahead:
+`paxlume.net` was registered at Cloudflare Registrar on 2026-11-12 (renews 2027-11-12) and uses Cloudflare's nameservers, so no DNS records need copying.
 
-1. Decide the address: `<project>.pages.dev` (free) or a custom domain (costs money; Ben + guardian decide).
-2. A PR that changes canonical, Open Graph, sitemap, robots and `_next` URLs in the source to the new address, updates `privacy.html` to name Cloudflare as the host instead of GitHub, and updates README. (`PAXLUME_SITE_URL` can preview this on staging first.)
-3. Set `PAXLUME_INDEXABLE=yes` in Cloudflare and redeploy.
-4. Search Console: add the new address as a property, submit its `sitemap.xml`.
-5. GitHub Pages: keep it running for a few weeks with canonicals pointing to the new address, then replace it with redirect pages or switch it off. Don't do this first.
+**5a. Connect the domain (Ben, safe to do any time).** Worker `paxlumeweb` > **Settings** > **Domains & Routes** > **Add** > **Custom domain** > `paxlume.net` > **Add domain**. Repeat for `www.paxlume.net`. Cloudflare creates the DNS records and HTTPS certificate itself (a few minutes). Until the switch PR is merged, the site there is still noindex with canonicals pointing to GitHub Pages, so nothing changes in Google.
+
+**5b. www to root (Ben).** Cloudflare dashboard > `paxlume.net` > **Rules** > **Overview** > **Create rule** > **Redirect Rules** > template **Redirect from WWW to Root** > Deploy. Check `https://www.paxlume.net/privacy` lands on `https://paxlume.net/privacy`.
+
+**5c. Switch PR (Claude prepares, Ben approves).** Merging it is the switch:
+- Canonical, Open Graph, sitemap, robots and the form's `_next` all point to `https://paxlume.net/` (clean URLs such as `/privacy`, which Cloudflare serves directly).
+- Production (`main`) builds drop the noindex header; previews keep it. `PAXLUME_INDEXABLE=no` in the Worker's build variables puts noindex back in an emergency.
+- `privacy.html` names Cloudflare as the host (GitHub only for the old address).
+- GitHub Pages keeps serving the same pages, but their canonicals now point to paxlume.net, so Google moves to the new address without seeing duplicates.
+
+**5d. Right after merging (Ben, then Claude):**
+1. FormSubmit approves each address once. Open `https://paxlume.net/#contact`, send a test ("Cloudflare test" / "Test only"), click **Activate** in the FormSubmit email, send a second test, check it reaches Gmail.
+2. Claude checks every page, the 404 page, `/HANDOFF.md` returning 404, the headers and the sitemap on paxlume.net.
+3. Worker > **Settings** > **Domains & Routes**: turn off the `workers.dev` address so there's only one public copy on Cloudflare.
+4. Search Console: add a **Domain** property for `paxlume.net` (Cloudflare can verify it automatically when asked), then submit `https://paxlume.net/sitemap.xml`.
+
+**5e. Redirect GitHub Pages (separate PR, about 2 weeks later).** GitHub Pages can't send real redirects. Claude prepares small redirect pages (each with a canonical tag, an instant meta refresh and a link) on a `gh-pages` branch, and Ben switches **Settings > Pages > Source** to that branch. Until then the canonicals do the work.
 
 ## Rollback
 
