@@ -271,6 +271,9 @@ PR #7 prepares a **staging** Cloudflare Pages deployment from GitHub. The public
 4. Form test on the Cloudflare address: one activation click in Gmail, then a test enquiry (step 3).
 5. Later and separately: whether and when to switch the public site, and to which address (step 5). A custom domain would cost money.
 
+### Cloudflare check (2026-11-12, after merge)
+Ben's first attempt created a Cloudflare **Worker** (`paxlumeweb.paxlumeweb.workers.dev`), not a Pages project. Claude checked it: it serves the whole repo (`HANDOFF.md`, `README.md`, `CLOUDFLARE.md`, `starter-template/`, `scripts/` all return 200) because a Worker skips the build script. Canonicals still point to GitHub Pages, so there's no SEO harm, and those files are already public in the repo. Fix: create a **Pages** project (gives `paxlumeweb.pages.dev`), check it, then delete the Worker. `CLOUDFLARE.md` step 1 now explains how to spot the difference. Don't test the form on the Worker address.
+
 ## Tasks for ChatGPT
 <!-- Non-code jobs Claude can't do (Claude has no Gmail access). Nothing private here. -->
 - [ ] 2026-11-12: Review every policy page with Ben and a parent or guardian (plain-English drafts, not legal advice). Note any wording to change under "Questions for Claude" and Claude will update the pages. Read them live (each file is in the repo root):

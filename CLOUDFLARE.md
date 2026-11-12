@@ -49,7 +49,8 @@ Limits (developers.cloudflare.com/pages/platform/limits, checked 2026-11-12): 50
 Do this with a parent or guardian, since it accepts Cloudflare's and GitHub's terms. Never paste a password, code or token into chat or GitHub. Leave the practice project `paxlume-hosting-test` as it is: a Direct Upload project can't be converted, so this creates a new one.
 
 1. Sign in at <https://dash.cloudflare.com>. In the left menu choose **Workers & Pages** (under Compute).
-2. Choose **Create application**, then the **Pages** tab, then **Connect to Git** (it may say **Import an existing Git repository**).
+2. Choose **Create application**. Cloudflare shows **Workers** first: don't use that. Choose the **Pages** tab, or the small **Looking to deploy Pages? Get started** link at the bottom, then **Connect to Git** (it may say **Import an existing Git repository**).
+   - How to tell you're in the right place: the setup asks for a **Build output directory**, and the finished address ends in **`.pages.dev`**. If it asks for a **Deploy command** (`npx wrangler deploy`) or the address ends in `.workers.dev`, that's a Worker. A Worker serves the whole repo (including HANDOFF.md) and skips the build script.
 3. Choose **GitHub**, then **Add account**. GitHub opens and asks where to install **Cloudflare Workers and Pages**.
    - Pick the **paxlumeweb** account.
    - Choose **Only select repositories** and select **paxlumeweb/Paxlumeweb** only. Do not choose "All repositories".
@@ -63,8 +64,10 @@ Do this with a parent or guardian, since it accepts Cloudflare's and GitHub's te
    - **Build output directory:** `dist`
    - **Root directory:** leave blank. **Environment variables:** add none.
 6. Choose **Save and Deploy**.
-   - If this PR isn't merged yet, this first build of `main` **fails** because `main` doesn't have the build script. That is expected and harmless: nothing is published and GitHub Pages is untouched.
 7. Tell Claude "Cloudflare is connected" and the project's `pages.dev` address. Nothing else is needed: no tokens, no screenshots of settings pages.
+
+### If a Worker was created by mistake
+A Worker at `<name>.<account>.workers.dev` always has two parts in its address (worker name, then the account's subdomain); it can't be just `paxlumeweb.workers.dev`. Create the Pages project as above, check it works, then delete the Worker: **Workers & Pages** > the Worker > **Settings** > **Delete**. Deleting it doesn't affect GitHub or GitHub Pages. Don't test the quote form on the Worker address.
 
 ## Step 2. Preview review (Claude, then Ben)
 
