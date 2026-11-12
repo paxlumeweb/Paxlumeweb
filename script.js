@@ -24,7 +24,7 @@ f.addEventListener('submit',function(e){e.preventDefault();
   var bad=req.filter(function(el){return !check(el);});
   if(bad.length){show('err','Please fix the '+(bad.length===1?'highlighted field':bad.length+' highlighted fields')+' and try again.');bad[0].focus();return;}
   if(f.querySelector('[name="_honey"]').value)return; // bot
-  if(Date.now()-loaded<3000){show('err','That was very quick. Please check your details and press send again.');return;} // likely bot
+  if(loaded&&Date.now()-loaded<3000){loaded=0;show('err','That was very quick. Please check your details and press send again.');return;} // likely bot; a second press always goes through
   if(f.getAttribute('data-form-active')!=='true'){show('err','Sorry, the online form isn\'t switched on yet. Please email your enquiry to '+mail+' instead.');return;}
   btn.disabled=true;btn.textContent='Sending…';status.hidden=true;
   var data=new FormData(f),body={};data.forEach(function(v,k){body[k]=v;});
