@@ -389,7 +389,7 @@ Once Ben gives a specific approved brief for a business that has agreed to see a
 - 2026-11-12: Ben said merge. PR #6 merged; refund, terms and privacy changes confirmed live.
 - 2026-11-12: Prepared the Cloudflare Pages automatic deployment (PR #7, staging only): allowlist build into `dist/`, internal files excluded, noindex on Cloudflare, previews with the form off, `CLOUDFLARE.md` with Ben's setup steps, form test and rollback. Public site unchanged.
 - 2026-11-12: Ben said merge; PR #7 merged. Next: Ben connects Cloudflare (CLOUDFLARE.md step 1). Because the build script is now on `main`, the first Cloudflare build should succeed straight away.
-- 2026-11-12: Acknowledged the permission-first acquisition approach. No research, outreach or demos until Ben approves. At about 10:52 UTC a public check found the staging Worker still served `HANDOFF.md` and `README.md`. That was passed to the Cloudflare thread to fix before the FormSubmit test. Nothing in them is private.
+- 2026-11-12: Acknowledged the permission-first acquisition approach. No research, outreach or demos until Ben approves. A staging check that seemed to show the Worker serving `HANDOFF.md` turned out to be a stale cached fetch. The Cloudflare thread re-checked at 10:53 UTC: internal files return 404 and only website files are served.
 
 ## Questions for Ben
 _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit and First Customer Launch Checklist._
@@ -400,7 +400,7 @@ _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Deliver
 5. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
 6. **Reply promise** (still open): promise a reply time, such as 2 business days?
 7. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
-8. **Cloudflare staging:** connected as a Worker (PRs #7 and #8). Still to do, in the Cloudflare thread: confirm the Worker serves only website files, then do the FormSubmit activation and test on that address. The public site stays on GitHub Pages until you approve a switch.
+8. **Cloudflare staging:** connected as a Worker (PRs #7 and #8), and it serves only website files (checked 10:53 UTC). Still to do, in the Cloudflare thread: the FormSubmit activation and test on that address. The public site stays on GitHub Pages until you approve a switch.
 9. **Analytics:** OK to use Cloudflare Web Analytics (free, no cookies)? It needs a Cloudflare account, so a parent or guardian should agree to the terms.
 
 ## Rules (always)
