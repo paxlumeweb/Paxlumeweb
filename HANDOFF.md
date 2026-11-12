@@ -36,7 +36,7 @@ This file is not linked from the website. Note: this repo is public, so never pu
 - [x] 2026-11-12 (done, PR #6 merged with Ben's OK): Audit privacy.html and enquiry-form disclosures for accuracy about submitted data, hosting security logs, FormSubmit/Gmail processing, third-party cookies/anti-bot services, data retention and deletion handling; offer a precise accessible copy-only PR and verify no unapproved analytics are present (to make customer privacy promises match actual operations).
 - [x] 2026-11-12 (done, kept privately as Claude's "First Customer Launch Checklist" doc): Prepare the final first-customer test-and-handover checklist, including real deployment through a client-owned approved host when authorised, two payment invoices, private preview, client signoff, fixes, domain ownership and access removal; note Google Search Console verification steps and do not create accounts or send messages without approval (to validate delivery end to end).
 
-- [ ] 2026-11-12: Prepare a no-cost, safe GitHub → Cloudflare Pages automatic-deployment proposal and preview PR for the Paxlume portfolio site; use a NEW Git-integrated Pages project rather than converting the existing Direct Upload test, publish only website files, and show a verified staging deployment and rollback plan before requesting owner approval to switch hosting or change public addresses (to enable automatic updates without exposing project-management files or breaking enquiries/SEO).
+- [ ] 2026-11-12 (mostly done: PRs #7 and #8 merged, staging is live as a Cloudflare Worker; the remaining step, Ben's FormSubmit test on the Cloudflare address, is handled in the Cloudflare thread): Prepare a no-cost, safe GitHub → Cloudflare Pages automatic-deployment proposal and preview PR for the Paxlume portfolio site; use a NEW Git-integrated Pages project rather than converting the existing Direct Upload test, publish only website files, and show a verified staging deployment and rollback plan before requesting owner approval to switch hosting or change public addresses (to enable automatic updates without exposing project-management files or breaking enquiries/SEO).
 
 ## Updates from ChatGPT — Gmail and business workflow (2026-11-12)
 - Business Gmail `paxlumeweb@gmail.com` was created by the owner and successfully verified through ChatGPT's Gmail connector.
@@ -353,6 +353,19 @@ Cloudflare only offered Ben the **Worker** route (`paxlumeweb.paxlumeweb.workers
 
 Reference guidance: https://www.acma.gov.au/avoid-sending-spam ; Spam Act 2003 https://www.legislation.gov.au/C2004A01214/latest
 
+### Claude acknowledgement (2026-11-12)
+Claude has read and accepted the permission-first approach. Until Ben says prospecting can start, Claude will not:
+- research individual businesses or keep prospect lists
+- contact anyone
+- build any demo for a real business
+
+Once Ben gives a specific approved brief for a business that has agreed to see a concept, Claude will build the demo with these safeguards:
+- It's private and set to `noindex`.
+- It carries a visible "Concept by Paxlume Web Studio, not the business's official website" label.
+- It uses only confirmed public facts and assets Paxlume owns or is licensed to use.
+- It contains no invented reviews, prices, claims or logos.
+- It's hosted outside this public repo, so no business details end up in GitHub.
+
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
 - 2026-11-12: Fixed and verified the live site, redesigned the homepage in navy/mint, added FAQ.
@@ -376,6 +389,7 @@ Reference guidance: https://www.acma.gov.au/avoid-sending-spam ; Spam Act 2003 h
 - 2026-11-12: Ben said merge. PR #6 merged; refund, terms and privacy changes confirmed live.
 - 2026-11-12: Prepared the Cloudflare Pages automatic deployment (PR #7, staging only): allowlist build into `dist/`, internal files excluded, noindex on Cloudflare, previews with the form off, `CLOUDFLARE.md` with Ben's setup steps, form test and rollback. Public site unchanged.
 - 2026-11-12: Ben said merge; PR #7 merged. Next: Ben connects Cloudflare (CLOUDFLARE.md step 1). Because the build script is now on `main`, the first Cloudflare build should succeed straight away.
+- 2026-11-12: Acknowledged the permission-first acquisition approach. No research, outreach or demos until Ben approves. At about 10:52 UTC a public check found the staging Worker still served `HANDOFF.md` and `README.md`. That was passed to the Cloudflare thread to fix before the FormSubmit test. Nothing in them is private.
 
 ## Questions for Ben
 _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit and First Customer Launch Checklist._
@@ -386,7 +400,7 @@ _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Deliver
 5. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
 6. **Reply promise** (still open): promise a reply time, such as 2 business days?
 7. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
-8. **Cloudflare connection (with parent/guardian):** OK to connect a new Cloudflare Pages project to the Paxlumeweb repository (only that repository) as a staging copy? Steps in `CLOUDFLARE.md`. Free, and the public site doesn't move.
+8. **Cloudflare staging:** connected as a Worker (PRs #7 and #8). Still to do, in the Cloudflare thread: confirm the Worker serves only website files, then do the FormSubmit activation and test on that address. The public site stays on GitHub Pages until you approve a switch.
 9. **Analytics:** OK to use Cloudflare Web Analytics (free, no cookies)? It needs a Cloudflare account, so a parent or guardian should agree to the terms.
 
 ## Rules (always)
