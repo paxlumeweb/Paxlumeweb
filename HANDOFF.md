@@ -13,7 +13,7 @@ This file is not linked from the website. Note: this repo is public, so never pu
 - Business: Paxlume Web Studio, a small Brisbane web design business. Slogan "Websites made simple."
 - Goal right now: first $1,000 AUD (4 x $250 Starter websites) with a $0 budget.
 - Website is live: https://paxlumeweb.github.io/Paxlumeweb/ (deploys automatically from the `main` branch).
-- Pages: `index.html` (homepage), plus three demo sites: `greenedge.html` (GreenEdge Lawn Care), `shineworks.html` (ShineWorks Auto Detailing), `brightpath.html` (BrightPath Tutoring). The demos are fictional and labelled as samples.
+- Pages: `index.html` (homepage), `privacy.html`, `thank-you.html`, and (in PR #5) `terms.html`, `refunds.html`, `404.html`, plus three demo sites: `greenedge.html` (GreenEdge Lawn Care), `shineworks.html` (ShineWorks Auto Detailing), `brightpath.html` (BrightPath Tutoring). The demos are fictional and labelled as samples.
 - Brand: navy `#101D2C`, mint `#65D6BA`, white.
 - Done: site fixed and verified, homepage redesign + FAQ, GitHub workflow, business email set up, customer docs and lead tracker (kept privately, not in this repo).
 - Payments: bank transfer, A$125 on accepted agreement + A$125 on final preview approval, private invoices only (owner approved 2026-11-12).
@@ -195,6 +195,56 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 
 **Gaps found:** private preview links need the client's hosting account first (until then, preview by screenshots); client build folders need a private home (Ben's computer plus business Google Drive); client sites are uploaded by hand, never through this public repo.
 
+## Claude update: design clean-up, launch checklist and legal pages (2026-11-12, PR #5, not merged)
+Ben sent three lists. Everything below is in one pull request, waiting for Ben's OK. Nothing is live until it's merged.
+
+### List 1: generic "AI look" removed
+| Pattern | Found? | What changed |
+|---|---|---|
+| Gradient hero text | No (headline uses solid mint) | Also removed the mint glow gradients behind the hero and contact box |
+| Emojis in headings | Demos only (emoji "photos" in galleries, ✦ in ticker strips) | Replaced with plain "Photo placeholder" blocks and plain text |
+| Inter font | Not on the site, but the social share image used it | Share image redrawn in the site's own fonts (DM Sans and Outfit, kept) |
+| Coloured border cards | Only the amber pill tags | Tags are now plain text |
+| Glassmorphism | Yes, blurred see-through header | Solid navy header |
+| Low-contrast dark mode | No dark mode; a few low-contrast spots | Fixed: form borders and placeholders, demo accent colours, small mockup text |
+| 3 icon boxes in a row | Yes, "Why Paxlume" section | Now a plain list next to the heading, no icons |
+| Badge above headlines | Yes, hero pill plus small labels above every heading | Hero line is plain text; repeated labels removed |
+| Lucide-style icons | Yes, the 3 icons in "Why Paxlume" | Removed |
+| Untouched shadcn/ui | No (plain HTML/CSS) | Nothing to change |
+| Fade in on scroll | Yes | Removed; content shows straight away |
+| Cursor-following beam | No | Nothing to change |
+| Button fade on hover | Yes (fade, lift and glow) | Instant colour change, no glow |
+| Inconsistent spacing | Yes (30/32/34px, 56/60/70px gaps) | 8px-based spacing throughout |
+| Em dashes | Demos only | Removed |
+| Buzzword copy | Yes ("clean, modern", "bold, premium", "Simple services. Great results.") | Plain, factual copy |
+| Serif italic accents | No | Nothing to change |
+| Space Grotesk / Instrument Serif | No | Nothing to change |
+| Grain texture | No | Nothing to change |
+Also removed: floating animation on the hero mockups and the "Looks great on phones" floating tag.
+
+### Lists 2 and 3: launch and legal checklist
+- Already there and checked: privacy page, meta titles and descriptions on every page, favicon, social preview image, form validation, honeypot spam field, mobile layout, keyboard navigation (skip link, visible focus, menu and FAQ work by keyboard), no fake reviews, demos labelled fictional, business details (name, Brisbane QLD, email).
+- Added: Terms of service page (`terms.html`), Refund policy page (`refunds.html`, no "no refunds" wording, keeps Australian Consumer Law rights), custom 404 page, `sitemap.xml`, `robots.txt`, canonical links, footer links to Privacy, Terms and Refunds, a 3-second anti-bot check on the form.
+- Privacy page now covers: GitHub Pages hosting logs, a Cookies section (the site sets no cookies, so no banner is needed), a clear "Delete my details" email option, a children's note (site is for businesses), and a safety note about bank details.
+- Fonts: now stored on the site instead of Google Fonts, so no visitor data goes to Google. Both fonts are SIL Open Font License (licence files in `fonts/`). All images and illustrations are Paxlume's own.
+- Secrets: none in the front end. The FormSubmit form address is a public alias, which is how FormSubmit is meant to be used.
+- HTTPS: GitHub Pages always enforces HTTPS on github.io addresses. All links use https.
+- Broken links: none found.
+- Speed (Lighthouse, mobile, local test): 100 performance, 100 accessibility, 100 best practices, 100 SEO on every public page. Homepage is 116 KB in total and shows its main content in 1.7 s on a simulated slow phone.
+- Images: share image compressed from 100 KB to 19 KB. There are no other images.
+- Not added, and why: cookie banner (nothing sets cookies), analytics (needs Ben's choice first), age gate (the site is for businesses; privacy page says under-18s need a parent or guardian), unsubscribe link (the site sends no marketing emails).
+- Needs Ben and a parent or guardian before merging: the Terms and Refund pages are plain-English drafts based on agreement v2, not legal advice. They mention 7-day invoices and 30-day quotes (Questions for Ben #3) and the A$60 cap (#2).
+- `robots.txt` only works at the root of a domain, so it takes effect once Paxlume has its own domain. Until then, submit `sitemap.xml` in Google Search Console.
+
+## Tasks for ChatGPT
+<!-- Non-code jobs Claude can't do (Claude has no Gmail access). Nothing private here. -->
+- [ ] 2026-11-12: Go through the Terms of service and Refund policy drafts in PR #5 with Ben and a parent or guardian. Note any wording to change in "Questions for Claude" (so the legal pages can go live).
+- [ ] 2026-11-12: Help Ben choose analytics. Claude recommends Cloudflare Web Analytics (free, no cookies, no banner needed, and Cloudflare is already the plan for client hosting). Don't sign up until Ben and a parent or guardian agree to Cloudflare's terms; then tell Claude the site token so it can be added and the privacy page updated.
+- [ ] 2026-11-12: Help Ben set up Google Search Console for the site and submit `sitemap.xml` after PR #5 is merged (so Google finds the pages).
+- [ ] 2026-11-12: Any future outreach or follow-up email templates must include Paxlume's name, the business email and a clear way to opt out (Spam Act 2003). Add this to the email templates you keep in Gmail.
+- [ ] 2026-11-12: Set up a Gmail label or filter for "Delete my details" requests and a short reply template confirming deletion (the privacy page now offers this).
+- [ ] 2026-11-12: Follow up the open ABN and legal-name questions (Questions for Ben #1 and #4); the terms page says the legal name and any ABN appear on quotes and invoices.
+
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
 - 2026-11-12: Fixed and verified the live site, redesigned the homepage in navy/mint, added FAQ.
@@ -212,6 +262,7 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - 2026-11-12: Opened draft PR #4: payment wording preview (price card + "How do I pay?" FAQ) and the reusable `starter-template/`. Screenshots kept in Ben's private project files. Not merged.
 - 2026-11-12: Ben approved; PR #4 merged.
 - 2026-11-12: Hosting research done (Cloudflare Pages recommended, Netlify fallback) and end-to-end dry-run plan written. No accounts created.
+- 2026-11-12: Opened PR #5: removed generic AI design patterns, added terms, refund, 404, sitemap and robots pages, self-hosted fonts, cookie and data-deletion sections in the privacy notice, contrast fixes and a new share image. Lighthouse 100 across the board. Full list in the "Claude update: design clean-up" section. Not merged.
 
 ## Questions for Ben
 _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit._
@@ -222,6 +273,8 @@ _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Deliver
 5. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
 6. **Reply promise** (still open): promise a reply time, such as 2 business days?
 7. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
+8. **PR #5 review:** look at the before/after screenshots and say if the design clean-up and the new Terms and Refund pages can go live (Terms and Refunds after a parent or guardian has read them).
+9. **Analytics:** OK to use Cloudflare Web Analytics (free, no cookies)? It needs a Cloudflare account, so a parent or guardian should agree to the terms.
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.
