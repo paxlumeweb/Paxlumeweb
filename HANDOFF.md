@@ -26,6 +26,10 @@ This file is not linked from the website. Note: this repo is public, so never pu
 
 - [ ] 2026-11-12: Build a native-looking navy/mint quote-request form directly on the Paxlume homepage (not Google Forms), using a suitable no-cost form delivery service only after owner/guardian approval, and submit a preview pull request with a test plan and any activation steps (to collect enquiries through the website without exposing customer details).
 
+- [ ] 2026-11-12: Create a reusable Starter website project template and a complete staging-to-handover checklist (to deliver each $250 website reliably without copying private customer data into public repos).
+- [ ] 2026-11-12: Research and document an age-eligible, customer-owned hosting workflow for commercial one-page websites, comparing Cloudflare Pages and Netlify using current official terms, free plan limits, client ownership, domains, HTTPS and handover steps; do not create accounts or migrate the current site (to make customer publishing safe and predictable).
+- [ ] 2026-11-12: Prepare a private-demo-only end-to-end test plan covering enquiry, quote, content intake, preview, revisions, final signoff, site launch and handover; flag any missing technical steps and provide recommendations for owner approval (to confirm Paxlume can serve its first customer).
+
 ## Updates from ChatGPT — Gmail and business workflow (2026-11-12)
 - Business Gmail `paxlumeweb@gmail.com` was created by the owner and successfully verified through ChatGPT's Gmail connector.
 - ChatGPT created a parent label `Paxlume` and four nested labels: `Paxlume/Enquiries`, `Paxlume/Active Projects`, `Paxlume/Invoices & Payments`, and `Paxlume/Follow-ups`.
@@ -124,6 +128,38 @@ Copy-only changes, using the existing sections and styles:
   4. Claude switches the form on and runs 2 test enquiries (desktop and phone).
   5. Ben confirms both arrived.
   6. Ben says merge.
+
+## ChatGPT launch-readiness research and delivery plan (2026-11-12)
+**Goal:** prepare to win and reliably deliver 4 x $250 Starter websites (A$1,000 gross revenue, before costs and taxes). Keep the existing navy/mint design and publicly labelled fictional examples. Prioritise the outstanding embedded enquiry form, followed by the three new Claude tasks above. This is a coordination brief, **not approval for publishing, third-party signups or customer outreach**.
+
+### Verified Australian business checkpoints (business planning — ChatGPT/owner)
+- Australia's government advises young people may operate as sole traders, but there are state-specific work conditions and practical account/contract issues. The owner should review these with a parent/guardian. Source: https://business.gov.au/planning/new-businesses/start-a-business-when-youre-under-18
+- A business name different from a sole trader's personal legal name generally needs registration. The current government guide lists ASIC business-name fees of **$47 for 1 year or $108 for 3 years**, so a strict '$0 startup' is not a safe assumption if registration is required. Check availability and any relevant trademarks, then only the owner/guardian can authorise and pay. Sources: https://business.gov.au/registrations/register-your-business-name and https://register.business.gov.au/
+- An ABN can be applied for through official Australian registration services when eligible. Do **not** claim an ABN has been granted, a name registered, or GST registration completed. The ATO GST-registration threshold is generally **$75,000 annual GST turnover**, though registration may be voluntary or mandatory for other reasons. Sources: https://www.abr.gov.au/business-super-funds-charities/applying-abn/abn-entitlement/sole-trader and https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst
+- Written quotes should include exact scope, pricing, timelines, payment terms and client acceptance. Website services still carry Australian Consumer Law obligations including due care/skill and remedies; do not write 'no refunds under any circumstances'. Sources: https://business.gov.au/people/contractors/prepare-quotes and https://www.accc.gov.au/business/selling-products-and-services/consumer-rights-and-guarantees
+- Commercial email/SMS marketing requires appropriate consent, accurate sender identification and unsubscribe handling. Publicly posted email addresses are not blanket permission to send promotions, and a one-off enquiry does not automatically authorise newsletter marketing. Prefer introductions with consent and voluntarily submitted enquiries. Sources: https://www.acma.gov.au/avoid-sending-spam and https://www.acma.gov.au/publications/2026-10/report/action-scams-spam-and-telemarketing-april-june-2026
+- Check the actual privacy obligations, chosen form processor, data minimisation, retention and secure access; don't put contact details or financial info in this public handoff. Source: https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/organisations/small-business
+- No payment processor, bank account, business name, ABN, hosting account or form-delivery service has been created or paid for by ChatGPT. Payment account eligibility and any guardian role must be settled by the owner; never ask for passwords or verification codes.
+
+### Default $250 Starter scope for owner review (not new live promises)
+One responsive web page with up to five agreed content sections, clear contact CTA, basic metadata/accessibility checks, two consolidated revision rounds and a customer-owned handover. Excludes ecommerce, advanced bookings/login systems, paid hosting, domain purchases, unlimited revisions and ongoing maintenance unless separately quoted. Typical **10–14 business days** after scope/content agreement, subject to availability. Payment/deposit method is intentionally **not decided**: settle legal/account requirements and written terms first. Keep the three demo businesses honestly described as fictional.
+
+### Claude responsibilities
+1. **Finish the embedded-form task already specified above**. Seek approval for a legitimate form processor and age/terms/privacy conditions; keep the functional email fallback until two test submissions reach business Gmail. The owner is not going to manually build a Google Form or share sign-in credentials.
+2. **Starter template:** create a reusable, visually polished but lightweight one-page website starter in a branch/private or demo-only area, with configurable sections, reusable copy placeholders, mobile accessibility, SEO metadata, and no copied client data. Include build/run/deploy instructions. Do not replace the Paxlume main site or present the template as a real client.
+3. **Hosting and handover:** compare Cloudflare Pages vs Netlify using official current terms, commercial eligibility, age/account restrictions, free-tier limitations and account ownership. Recommend an owner/customer-approved option. Draft the click-by-click handover and access-removal process; no sign-ups or migrations without owner permission.
+4. **Dry-run QA:** document a fictional dry run of lead -> quote -> client content -> preview -> two revision rounds -> final checks -> client-owned deployment and backup. Identify anything the owner must approve, including forms, privacy, payment terms and any new costs.
+5. **Keep status clear:** make PRs/previews for code; give links, screenshots, test outcomes and blockers; maintain **Done by Claude** and **Questions for Ben**. Never publish customer names/details, financial information or secrets to GitHub; do not contact prospects without permission.
+
+### Operational materials prepared privately by ChatGPT (not uploaded to GitHub)
+A launch kit containing a startup checklist, $250 offer/quote draft, service agreement draft, customer workflow, consent-based acquisition plan, privacy copy draft, invoice template, and a start-here guide. The owner receives a local download. Claude may create technical checklists and reusable website code, but should not invent legal/account approvals or publish the private records.
+
+### Open decisions for owner and suitable adult
+- Confirm sole-trader/ABN/business-name eligibility and any required registration; authorise any associated fee (currently $47 for 1 year if required).
+- Decide approved way to receive customer payments and any guardian role, then review the quote/agreement/invoice and statutory rights.
+- Approve an enquiry service after its age/terms/privacy review and activation requirements; confirm test email delivery.
+- Agree on first-customer hosting provider and client-owned account setup.
+- Approve all outbound customer communications and any actual publishing/change of public business promises.
 
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
