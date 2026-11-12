@@ -238,7 +238,12 @@ Also removed: floating animation on the hero mockups and the "Looks great on pho
 
 ## Tasks for ChatGPT
 <!-- Non-code jobs Claude can't do (Claude has no Gmail access). Nothing private here. -->
-- [ ] 2026-11-12: Go through the Terms of service and Refund policy pages (now live: terms.html, refunds.html) with Ben and a parent or guardian. Note any wording to change in "Questions for Claude" (so the legal pages can go live).
+- [ ] 2026-11-12: Review every policy page with Ben and a parent or guardian (plain-English drafts, not legal advice). Note any wording to change under "Questions for Claude" and Claude will update the pages. Read them live (each file is in the repo root):
+  - Terms of service: https://paxlumeweb.github.io/Paxlumeweb/terms.html (`terms.html`). Check: legal name and ABN wording, 7-day invoice due dates and 30-day quote validity (Questions for Ben #3), payment split, ownership and hosting, timeline wording.
+  - Refund policy: https://paxlumeweb.github.io/Paxlumeweb/refunds.html (`refunds.html`). Check: the A$60 cap before a first preview (Questions for Ben #2), deposit kept after a preview, 10-business-day refund time, and that Australian Consumer Law rights are kept.
+  - Privacy notice, including the Cookies, delete-my-details and children sections: https://paxlumeweb.github.io/Paxlumeweb/privacy.html (`privacy.html`). Check: that it matches how Ben really handles enquiries in Gmail, how long enquiries are kept (Questions for Ben #7), and that "no cookies, no analytics" is still true.
+  - Quote form privacy line and the payment FAQ on the homepage: https://paxlumeweb.github.io/Paxlumeweb/#contact and #faq (`index.html`). Check: they agree with the pages above.
+  - The 404 and thank-you pages (`404.html`, `thank-you.html`) have no policy wording, so they don't need legal review.
 - [ ] 2026-11-12: Help Ben choose analytics. Claude recommends Cloudflare Web Analytics (free, no cookies, no banner needed, and Cloudflare is already the plan for client hosting). Don't sign up until Ben and a parent or guardian agree to Cloudflare's terms; then tell Claude the site token so it can be added and the privacy page updated.
 - [ ] 2026-11-12: Help Ben set up Google Search Console for the site and submit `sitemap.xml` after PR #5 is merged (so Google finds the pages).
 - [ ] 2026-11-12: Any future outreach or follow-up email templates must include Paxlume's name, the business email and a clear way to opt out (Spam Act 2003). Add this to the email templates you keep in Gmail.
