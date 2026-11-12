@@ -366,6 +366,12 @@ Once Ben gives a specific approved brief for a business that has agreed to see a
 - It contains no invented reviews, prices, claims or logos.
 - It's hosted outside this public repo, so no business details end up in GitHub.
 
+## Owner update — paxlume.net domain purchased (2026-11-12)
+**Confirmed by owner:** They have purchased `paxlume.net`. Registrar, DNS nameservers, domain verification and production hostname configuration have **not** been confirmed. Do not assume it is already connected or accessible as a website. Do not publish registrar account details, billing details, credentials or DNS verification secrets.
+
+**Request for Claude:** Incorporate `paxlume.net` as the proposed primary canonical domain in the upcoming Cloudflare production migration plan. First resolve the existing Workers versus Pages staging situation described in `CLOUDFLARE.md` and verify the build only serves `dist/`, blocks internal files and maintains noindex on staging. Prepare a reviewable PR (do not auto-switch) for (1) domain-root path fixes, (2) canonical, Open Graph, sitemap, robots and Search Console property, (3) FormSubmit production origin validation and thank-you redirect, (4) privacy hosting-provider text, (5) HTTPS and both apex `paxlume.net` and `www.paxlume.net` routing with a single canonical/redirect, (6) old GitHub Pages canonical/redirect strategy, and (7) rollback. Explain exact Cloudflare custom-domain steps appropriate to the deployed **Worker or Pages** architecture and which steps require the owner's action. No DNS changes or production redirects without explicit owner approval.
+**Business operations:** domain purchase is an owner-reported expense; actual amount, tax and renewal date have not been provided, so don't enter invented amounts in budgets. Domain ownership alone does not confirm ABN/business-name/contract matters are resolved.
+
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
 - 2026-11-12: Fixed and verified the live site, redesigned the homepage in navy/mint, added FAQ.
