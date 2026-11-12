@@ -16,7 +16,8 @@ This file is not linked from the website. Note: this repo is public, so never pu
 - Pages: `index.html` (homepage), plus three demo sites: `greenedge.html` (GreenEdge Lawn Care), `shineworks.html` (ShineWorks Auto Detailing), `brightpath.html` (BrightPath Tutoring). The demos are fictional and labelled as samples.
 - Brand: navy `#101D2C`, mint `#65D6BA`, white.
 - Done: site fixed and verified, homepage redesign + FAQ, GitHub workflow, business email set up, customer docs and lead tracker (kept privately, not in this repo).
-- Next priorities: first-$1k plan, then growth.
+- Payments: bank transfer, A$125 on accepted agreement + A$125 on final preview approval, private invoices only (owner approved 2026-11-12).
+- Next priorities: Ben's answers in Questions for Ben, merge PR #4 if approved, run the dry run, then the first-$1k plan.
 
 ## Tasks from ChatGPT
 <!-- Add new tasks at the bottom. Format: - [ ] YYYY-MM-DD: what to do (why) -->
@@ -26,9 +27,9 @@ This file is not linked from the website. Note: this repo is public, so never pu
 
 - [x] 2026-11-12 (done, merged in PR #3): Built the on-site navy/mint quote-request form with approved FormSubmit delivery, spam protection, thank-you and privacy pages; two Gmail tests passed and a live submission was accepted (to receive enquiries directly on the website).
 
-- [ ] 2026-11-12: Create a reusable Starter website project template and a complete staging-to-handover checklist (to deliver each $250 website reliably without copying private customer data into public repos).
-- [ ] 2026-11-12: Research and document an age-eligible, customer-owned hosting workflow for commercial one-page websites, comparing Cloudflare Pages and Netlify using current official terms, free plan limits, client ownership, domains, HTTPS and handover steps; do not create accounts or migrate the current site (to make customer publishing safe and predictable).
-- [ ] 2026-11-12: Prepare a private-demo-only end-to-end test plan covering enquiry, quote, content intake, preview, revisions, final signoff, site launch and handover; flag any missing technical steps and provide recommendations for owner approval (to confirm Paxlume can serve its first customer).
+- [x] 2026-11-12 (done, in draft PR #4 awaiting Ben's OK): Create a reusable Starter website project template and a complete staging-to-handover checklist (to deliver each $250 website reliably without copying private customer data into public repos).
+- [x] 2026-11-12 (done, kept privately; summary below): Research and document an age-eligible, customer-owned hosting workflow for commercial one-page websites, comparing Cloudflare Pages and Netlify using current official terms, free plan limits, client ownership, domains, HTTPS and handover steps; do not create accounts or migrate the current site (to make customer publishing safe and predictable).
+- [x] 2026-11-12 (plan done, kept privately; dry run itself not yet run): Prepare a private-demo-only end-to-end test plan covering enquiry, quote, content intake, preview, revisions, final signoff, site launch and handover; flag any missing technical steps and provide recommendations for owner approval (to confirm Paxlume can serve its first customer).
 
 ## Updates from ChatGPT — Gmail and business workflow (2026-11-12)
 - Business Gmail `paxlumeweb@gmail.com` was created by the owner and successfully verified through ChatGPT's Gmail connector.
@@ -176,6 +177,24 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - **Claude action:** revise the private invoice template, quote template, service agreement draft and handover checklist to match these two milestones; include invoice numbering, due dates, payment references, and status tracking without any real account numbers. Do not publish account data or private docs in this public repo. If a payment FAQ change is useful, propose preview for owner approval, without revealing bank details.
 - **Remaining approvals:** owner/guardian review of business registration, contracting/invoice wording and actual use of the payment process before first client. This handoff update is not authorisation to invoice or contact anyone.
 
+## Claude update: bank transfer, templates and launch readiness (2026-11-12)
+**Short version:** the private payment and delivery kit is done (workflow, quote, invoice, confirmation emails, revised agreement, handover checklist, hosting comparison, dry-run plan). One public change is proposed in draft PR #4 and is **not live**. No bank details, customer records or private documents are in this repo; a scan of every file and the full git history found none.
+
+**Private (not in this repo):** a "Payments and Delivery Kit" doc for Ben, linked from the private Business Kit, plus a printable invoice template file in Ben's private project files. They cover:
+- **Workflow:** enquiry, quote (PAX-Q-YYYY-NNN, valid 30 days), written acceptance, deposit invoice A$125 (PAX-YYYY-NNN-D, due 7 days), work starts when cleared, preview, one round of changes, written approval, final invoice A$125 (PAX-YYYY-NNN-F, due 7 days), launch when cleared, handover, access removed, records kept privately for 5 years.
+- **Invoice:** titled "Invoice", not "Tax invoice" (not GST-registered), "GST: not charged" line, bank details as `[BSB]` / `[Account number]` placeholders filled only on a real invoice, payment reference like PAX001D, and a scam warning that Paxlume never emails changed bank details.
+- **Payment confirmation:** Ben checks cleared funds in his own banking app (never a customer screenshot or receipt), records it in the private tracker, then sends a "Payment received" email. One reminder after the due date; pause the job if still unpaid.
+- **Agreement review:** the old draft's "deposit not refunded once a preview is sent" wording could read as a blanket no-refund rule. Version 2 ties refunds to work done, gives a full refund if Paxlume can't finish, keeps Australian Consumer Law rights, and adds payment method, due dates, reference, timing (10-14 business days, matching the site), client-owned hosting and seller identity.
+- **Hosting (research only, no sign-ups):** recommend **Cloudflare Pages** in an account the client creates, with Netlify as fallback. Cloudflare free: 500 builds a month, 100 custom domains per project, 20,000 files, no credit meter, no minimum age found in its agreement. Netlify free: 300 credits a month (15 per production deploy, 20 per GB bandwidth), and every site in the account pauses when credits run out; minimum age 13; commercial use and third-party sites allowed. Handover: client opens the account and invites Paxlume as a member, Paxlume uploads, client removes Paxlume's access. Paxlume never holds client passwords.
+- **Dry-run plan:** 12-stage fake job ("Test Co", job 000) from form to handover with pass checks. Not run yet; step 10 needs a test Cloudflare account, which needs Ben's and a parent/guardian's OK.
+
+**Public (draft PR #4, not merged):** https://github.com/paxlumeweb/Paxlumeweb/pull/4
+- Price card fine print adds: "Paid by bank transfer in two parts; payment details are supplied privately on your invoice."
+- New FAQ "How do I pay?" explaining $125 + $125, bank details only on the private invoice, nothing paid through the website.
+- `starter-template/` folder: reusable one-page client template (placeholders only, noindex, labelled as a template) with build and pre-preview checklists in its README.
+
+**Gaps found:** private preview links need the client's hosting account first (until then, preview by screenshots); client build folders need a private home (Ben's computer plus business Google Drive); client sites are uploaded by hand, never through this public repo.
+
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
 - 2026-11-12: Fixed and verified the live site, redesigned the homepage in navy/mint, added FAQ.
@@ -189,13 +208,20 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - 2026-11-12: Built the on-site quote form (fields, validation, honeypot, FormSubmit delivery, thank-you and privacy pages) as draft PR #3, switched off until activation and tests. The Google Forms plan was dropped per the owner instruction. Screenshots are kept privately in the project files.
 - 2026-11-12: Ben approved FormSubmit. Sent the activation test, and Ben activated the form for paxlumeweb.github.io. PR #3 now uses FormSubmit's alias address and the form is switched on (still not merged). Two test enquiries with non-personal data (desktop and phone labels) arrived in the business Gmail with the right subject and fields; Ben confirmed by screenshot. The error message was also checked with a real refused submission. Note: FormSubmit's free emails include a small sponsor ad. Remaining: Ben's merge OK, then one final submission from the live site.
 - 2026-11-12: Ben said merge. PR #3 merged and deployed. The live page shows "Request a free quote", and the thank-you and privacy pages load. A final test with non-personal data was accepted by FormSubmit after going live.
+- 2026-11-12: Bank transfer: wrote the private payment workflow, quote, invoice (plus printable template), payment confirmation and reminder emails, revised service agreement (v2) and handover checklist for the approved A$125 + A$125 split. Scanned the repo and history for bank or customer data: none.
+- 2026-11-12: Opened draft PR #4: payment wording preview (price card + "How do I pay?" FAQ) and the reusable `starter-template/`. Screenshots kept in Ben's private project files. Not merged.
+- 2026-11-12: Hosting research done (Cloudflare Pages recommended, Netlify fallback) and end-to-end dry-run plan written. No accounts created.
 
 ## Questions for Ben
-- **Bank transfer:** Owner confirmed bank suitability and approved an A$125 initial deposit plus A$125 final payment for the Starter package. Still needed: review written service agreement, invoices and business-registration status with a parent/guardian before accepting the first payment. Keep account details private.
-_Earlier questions answered on 2026-11-12. The Google Forms question is replaced by the on-site form._
-1. **Reply promise:** the form and thank-you page only say "I'll reply by email", with no time limit. Do you want to promise a time, such as 2 business days?
-2. **Keeping enquiries:** the privacy page says enquiry emails are kept "only as long as needed". Do you want a fixed period instead, such as deleting enquiries that don't go ahead after 12 months?
-3. **Customer hosting:** OK for Claude to compare Cloudflare Pages and Netlify terms before the first paying customer? (Research only, no sign-ups.)
+_Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit._
+1. **PR #4 wording:** OK to publish the "How do I pay?" FAQ and price-card line? Or keep only "bank transfer, details on your invoice" without the $125 + $125 split?
+2. **ABN (with parent/guardian):** without an ABN, a business client may withhold 47% of a payment unless an ATO exception applies and you give them a signed supplier statement (which includes your address). Recommendation: apply for a free ABN before the first business client.
+3. **Refund wording (with parent/guardian):** approve agreement v2: full refund before work starts, keep up to A$60 if cancelled before the first preview, deposit kept after a preview (no final payment, nothing published), full refund if Paxlume can't finish.
+4. **Due dates and quote validity:** invoices due 7 days after issue, quotes valid 30 days. OK?
+5. **Legal name on invoices:** invoices say "[your legal name] trading as Paxlume Web Studio". A business name other than your own name legally needs registering (A$47 a year). Decide with a parent/guardian.
+6. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
+7. **Reply promise** (still open): promise a reply time, such as 2 business days?
+8. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.
