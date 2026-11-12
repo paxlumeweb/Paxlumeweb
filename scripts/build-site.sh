@@ -9,18 +9,20 @@
 # Run locally:   bash scripts/build-site.sh     (then open dist/index.html)
 #
 # Branches (Cloudflare sets CF_PAGES_BRANCH or WORKERS_CI_BRANCH during a build):
-#   main        Production (https://paxlume.net). Quote form on. Indexable ONLY
-#               when PAXLUME_INDEXABLE=yes is set (launch step, Ben approves).
+#   main        Production (https://paxlume.net). Quote form on. Indexable when
+#               INDEXABLE_DEFAULT below is "yes" (Ben approved launch indexing).
 #   any other   Preview. Every page gets "X-Robots-Tag: noindex" and the quote
 #               form is switched off (visitors see the email fallback), so previews
 #               never compete in search, send enquiries or trigger FormSubmit
 #               activation emails.
-# Setting (Cloudflare > Worker > Settings > Build > Variables and secrets):
-#   PAXLUME_INDEXABLE=yes   Let search engines index production. Leave unset
-#                           until launch is approved and verified; remove it to
-#                           go back to noindex. Previews and the workers.dev
-#                           address are always noindex.
+# Indexing switch: INDEXABLE_DEFAULT below. Cloudflare doesn't allow dashboard
+# variables on an assets-only Worker, so the switch lives in the repo: changing
+# it needs a PR that Ben approves. To go back to noindex, set it to "no" (or
+# revert the PR that set it). An optional PAXLUME_INDEXABLE build variable, if
+# one is ever set, overrides it. Previews and the workers.dev address are
+# always noindex.
 set -euo pipefail
+INDEXABLE_DEFAULT="yes"   # Production on paxlume.net may be indexed (approved by Ben, 2026-11-13)
 
 cd "$(dirname "$0")/.."
 OUT=dist
@@ -62,7 +64,7 @@ if [ "$BRANCH" != "main" ]; then
 fi
 
 # ---- 3. Cloudflare _headers ----------------------------------------------------
-if [ "$BRANCH" = "main" ] && [ "${PAXLUME_INDEXABLE:-}" = "yes" ]; then
+if [ "$BRANCH" = "main" ] && [ "${PAXLUME_INDEXABLE:-$INDEXABLE_DEFAULT}" = "yes" ]; then
   echo "Production build, indexable: search engines may index this deployment."
 else
   printf '/*\n  X-Robots-Tag: noindex\n' > "$OUT/_headers"

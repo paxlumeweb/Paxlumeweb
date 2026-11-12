@@ -25,17 +25,13 @@ This file is not part of the website: the build never copies it.
 **What the build changes in `dist/` only** (the source files stay exactly as GitHub Pages needs them):
 
 1. `404.html`: `/Paxlumeweb/...` links become `/...`, because on Cloudflare the site sits at the domain root.
-2. Search engines: every response gets `X-Robots-Tag: noindex` (via a generated `_headers` file) unless the `PAXLUME_INDEXABLE=yes` build variable is set on a `main` build. That variable is the launch switch and stays unset until Ben approves. Previews and the `workers.dev` address are always noindex.
+2. Search engines: every response gets `X-Robots-Tag: noindex` (via a generated `_headers` file) unless it's a `main` build with the indexing switch on (`INDEXABLE_DEFAULT` in the build script, see below). Previews and the `workers.dev` address are always noindex.
 3. Quote form on **previews**: switched off (`data-form-active="false"`). Visitors see the "please email" fallback. This stops previews sending enquiries and stops every new preview address triggering a FormSubmit activation email.
 4. Quote form on **main**: left on. The no-JavaScript thank-you redirect (`_next`) points at `https://paxlume.net/thank-you`.
 
 5. Security headers on every page: a Content-Security-Policy (only the site's own files, plus FormSubmit for the form; no inline code allowed), `X-Frame-Options: DENY`, `nosniff`, a referrer policy, a permissions policy and HSTS. The `workers.dev` address always gets `noindex`, even after launch. The build fails if a page gains an inline `<style>`, `style="..."`, inline `<script>` or `on...=""` handler, because the CSP would block it. GitHub Pages can't send these headers.
 
-Build variable (Worker > Settings > Build > Variables and secrets). **Leave unset until launch is approved:**
-
-| Variable | Effect |
-|---|---|
-| `PAXLUME_INDEXABLE=yes` | Production (`main`) pages on paxlume.net may be indexed. Remove it and redeploy to go back to noindex |
+Indexing switch: `INDEXABLE_DEFAULT` near the top of `scripts/build-site.sh` (`yes` since launch). Cloudflare refuses dashboard variables on an assets-only Worker ("Variables cannot be added to a Worker that only has static assets"), so the switch is in the repo and changing it takes an approved PR. Set it to `no` (or revert that PR) to go back to noindex. Previews and the workers.dev address are always noindex.
 
 Run it yourself: `bash scripts/build-site.sh`, then open `dist/index.html`. A local build behaves like a preview (form off).
 
@@ -114,7 +110,7 @@ Don't test the quote form until Claude has checked the Worker after this setup. 
 4. **APPROVAL: form test on paxlume.net.** Open `https://paxlume.net/#contact`, send one dummy enquiry ("Domain test" / "Test only"). If FormSubmit emails an activation request, click **Activate** (FormSubmit holds submissions until activation). Send a second test and check both reach Gmail. Don't continue until this works; GitHub Pages' form keeps working meanwhile.
 5. **APPROVAL: merge the domain PR.** Canonicals, Open Graph, sitemap, robots and the form's `_next` move to `https://paxlume.net/`, and the privacy notice names Cloudflare. GitHub Pages serves the same pages with canonicals pointing to paxlume.net. Production stays noindex.
 6. **Claude re-checks** canonicals, sitemap, robots, form `_next` and headers on paxlume.net.
-7. **APPROVAL: turn on indexing.** Worker > Settings > Build > Variables and secrets > add `PAXLUME_INDEXABLE` = `yes` > Save, then **Deployments** > retry the latest build (or merge any small PR). Check `X-Robots-Tag` is gone on paxlume.net but still present on workers.dev.
+7. **APPROVAL: turn on indexing.** Merge the PR that sets `INDEXABLE_DEFAULT="yes"` in `scripts/build-site.sh` (the dashboard can't hold variables for an assets-only Worker). Check `X-Robots-Tag` is gone on paxlume.net but still present on workers.dev.
 8. **Search Console:** add a **Domain** property for `paxlume.net` (Cloudflare can add the verification record when asked), submit `https://paxlume.net/sitemap.xml`.
 9. **Optional:** Worker > **Settings** > **Domains & Routes**: turn off the `workers.dev` address (it's noindex either way).
 10. **About 2 weeks later (separate PR):** redirect pages for GitHub Pages, then Ben switches Pages to them. After that the repo can be made private (a free GitHub plan can't serve Pages from a private repo).
@@ -122,7 +118,7 @@ Don't test the quote form until Claude has checked the Worker after this setup. 
 ## Rollback
 
 - **Domain problem (steps 1 to 4):** remove the custom domain (Worker > Settings > Domains & Routes > ⋯ > Remove). The site was never promoted, and GitHub Pages is unchanged.
-- **Indexing turned on too early (step 7):** delete `PAXLUME_INDEXABLE` and redeploy. noindex is back within minutes.
+- **Indexing turned on too early (step 7):** revert the indexing PR (or set `INDEXABLE_DEFAULT="no"`) and merge. noindex is back within minutes of the build.
 - **Domain PR problem (step 5):** revert the PR on GitHub (**Revert** button on the merged PR), then merge the revert. Both hosts go back to the GitHub Pages canonicals.
 - **Bad Worker deploy:** Worker > **Deployments** > pick the last good version > **Rollback**.
 
