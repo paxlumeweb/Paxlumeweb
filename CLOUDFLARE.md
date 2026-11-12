@@ -49,7 +49,8 @@ Limits (developers.cloudflare.com/pages/platform/limits, checked 2026-11-12): 50
 Do this with a parent or guardian, since it accepts Cloudflare's and GitHub's terms. Never paste a password, code or token into chat or GitHub. Leave the practice project `paxlume-hosting-test` as it is: a Direct Upload project can't be converted, so this creates a new one.
 
 1. Sign in at <https://dash.cloudflare.com>. In the left menu choose **Workers & Pages** (under Compute).
-2. Choose **Create application**, then the **Pages** tab, then **Connect to Git** (it may say **Import an existing Git repository**).
+2. Choose **Create application**. Cloudflare shows **Workers** first: don't use that. Choose the **Pages** tab, or the small **Looking to deploy Pages? Get started** link at the bottom, then **Connect to Git** (it may say **Import an existing Git repository**).
+   - How to tell you're in the right place: the setup asks for a **Build output directory**, and the finished address ends in **`.pages.dev`**. If it asks for a **Deploy command** (`npx wrangler deploy`) or the address ends in `.workers.dev`, that's a Worker. A Worker serves the whole repo (including HANDOFF.md) and skips the build script.
 3. Choose **GitHub**, then **Add account**. GitHub opens and asks where to install **Cloudflare Workers and Pages**.
    - Pick the **paxlumeweb** account.
    - Choose **Only select repositories** and select **paxlumeweb/Paxlumeweb** only. Do not choose "All repositories".
@@ -63,8 +64,22 @@ Do this with a parent or guardian, since it accepts Cloudflare's and GitHub's te
    - **Build output directory:** `dist`
    - **Root directory:** leave blank. **Environment variables:** add none.
 6. Choose **Save and Deploy**.
-   - If this PR isn't merged yet, this first build of `main` **fails** because `main` doesn't have the build script. That is expected and harmless: nothing is published and GitHub Pages is untouched.
 7. Tell Claude "Cloudflare is connected" and the project's `pages.dev` address. Nothing else is needed: no tokens, no screenshots of settings pages.
+
+### If Cloudflare only offers a Worker (also fine)
+Cloudflare now pushes new projects towards **Workers**. The repo supports that too: `wrangler.jsonc` tells the Worker to serve only `dist/`, use `404.html` for missing pages, and the build script reads Workers' branch name (`WORKERS_CI_BRANCH`), so previews still have the form off and every page still gets noindex. Tested locally with `wrangler dev`: `/HANDOFF.md`, `/README.md`, `/starter-template/` return 404, missing pages show the Paxlume 404 page, `X-Robots-Tag: noindex` is sent.
+
+In the Worker (**Workers & Pages** > `paxlumeweb` > **Settings** > **Build** > **Build configuration** > edit):
+- **Build command:** `bash scripts/build-site.sh`
+- **Deploy command:** `npx wrangler deploy`
+- **Non-production branch deploy command:** `npx wrangler versions upload` (gives each branch/PR a preview link)
+- **Root directory:** leave as `/`
+- Save. Then **Settings > Build > Branch control**: production branch `main`, and turn on builds for non-production branches.
+- Once a build of `main` succeeds, turn the `workers.dev` switch back on under **Domains**.
+
+The address is `<worker name>.<account subdomain>.workers.dev`, so it always has two parts and can't be just `paxlumeweb.workers.dev`. Your account subdomain is shown (and can be changed, for every Worker at once) on the **Workers & Pages** overview page, right-hand side, under **Subdomain**. A Worker's free plan is A$0: static files are free and unlimited, and builds are included.
+
+Don't test the quote form until Claude has checked the Worker after this setup. FormSubmit approves each address once.
 
 ## Step 2. Preview review (Claude, then Ben)
 

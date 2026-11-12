@@ -271,6 +271,9 @@ PR #7 prepares a **staging** Cloudflare Pages deployment from GitHub. The public
 4. Form test on the Cloudflare address: one activation click in Gmail, then a test enquiry (step 3).
 5. Later and separately: whether and when to switch the public site, and to which address (step 5). A custom domain would cost money.
 
+### Cloudflare check (2026-11-12, after merge)
+Cloudflare only offered Ben the **Worker** route (`paxlumeweb.paxlumeweb.workers.dev`), not Pages. Before any setup, the Worker served the whole repo (`HANDOFF.md`, `README.md`, `starter-template/`, `scripts/` returned 200) because it skipped the build script. Ben has switched its address off for now. PR #8 adds `wrangler.jsonc` (serve only `dist/`, Paxlume 404 page) and makes the build script read `WORKERS_CI_BRANCH`, so the Worker gets the same safeguards as Pages. Tested locally with `wrangler dev`. Ben then sets the Worker's build command (`CLOUDFLARE.md` step 1, "If Cloudflare only offers a Worker"). A workers.dev address always has two parts (worker name, then account subdomain). Don't test the form until Claude has checked the Worker.
+
 ## Tasks for ChatGPT
 <!-- Non-code jobs Claude can't do (Claude has no Gmail access). Nothing private here. -->
 - [ ] 2026-11-12: Review every policy page with Ben and a parent or guardian (plain-English drafts, not legal advice). Note any wording to change under "Questions for Claude" and Claude will update the pages. Read them live (each file is in the repo root):
