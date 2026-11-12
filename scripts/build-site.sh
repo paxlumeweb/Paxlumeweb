@@ -59,7 +59,8 @@ done
 # at the domain root, so point them at /.
 sed -i 's#="/Paxlumeweb/#="/#g' "$OUT/404.html"
 
-BRANCH="${CF_PAGES_BRANCH:-local}"
+# Pages sets CF_PAGES_BRANCH; Workers Builds sets WORKERS_CI_BRANCH.
+BRANCH="${CF_PAGES_BRANCH:-${WORKERS_CI_BRANCH:-local}}"
 if [ "$BRANCH" = "main" ]; then
   # Keep no-JavaScript form visitors on the same host after sending.
   if [ -n "${CF_PAGES_URL:-}" ] && [ -z "${PAXLUME_SITE_URL:-}" ]; then

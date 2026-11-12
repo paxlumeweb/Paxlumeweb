@@ -66,8 +66,20 @@ Do this with a parent or guardian, since it accepts Cloudflare's and GitHub's te
 6. Choose **Save and Deploy**.
 7. Tell Claude "Cloudflare is connected" and the project's `pages.dev` address. Nothing else is needed: no tokens, no screenshots of settings pages.
 
-### If a Worker was created by mistake
-A Worker at `<name>.<account>.workers.dev` always has two parts in its address (worker name, then the account's subdomain); it can't be just `paxlumeweb.workers.dev`. Create the Pages project as above, check it works, then delete the Worker: **Workers & Pages** > the Worker > **Settings** > **Delete**. Deleting it doesn't affect GitHub or GitHub Pages. Don't test the quote form on the Worker address.
+### If Cloudflare only offers a Worker (also fine)
+Cloudflare now pushes new projects towards **Workers**. The repo supports that too: `wrangler.jsonc` tells the Worker to serve only `dist/`, use `404.html` for missing pages, and the build script reads Workers' branch name (`WORKERS_CI_BRANCH`), so previews still have the form off and every page still gets noindex. Tested locally with `wrangler dev`: `/HANDOFF.md`, `/README.md`, `/starter-template/` return 404, missing pages show the Paxlume 404 page, `X-Robots-Tag: noindex` is sent.
+
+In the Worker (**Workers & Pages** > `paxlumeweb` > **Settings** > **Build** > **Build configuration** > edit):
+- **Build command:** `bash scripts/build-site.sh`
+- **Deploy command:** `npx wrangler deploy`
+- **Non-production branch deploy command:** `npx wrangler versions upload` (gives each branch/PR a preview link)
+- **Root directory:** leave as `/`
+- Save. Then **Settings > Build > Branch control**: production branch `main`, and turn on builds for non-production branches.
+- Once a build of `main` succeeds, turn the `workers.dev` switch back on under **Domains**.
+
+The address is `<worker name>.<account subdomain>.workers.dev`, so it always has two parts and can't be just `paxlumeweb.workers.dev`. Your account subdomain is shown (and can be changed, for every Worker at once) on the **Workers & Pages** overview page, right-hand side, under **Subdomain**. A Worker's free plan is A$0: static files are free and unlimited, and builds are included.
+
+Don't test the quote form until Claude has checked the Worker after this setup. FormSubmit approves each address once.
 
 ## Step 2. Preview review (Claude, then Ben)
 

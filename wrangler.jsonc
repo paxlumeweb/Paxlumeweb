@@ -1,0 +1,11 @@
+// Cloudflare Workers config (used by Workers Builds when the repo is connected as a Worker).
+// Serves ONLY the dist/ folder made by scripts/build-site.sh, so internal files
+// (HANDOFF.md, README.md, starter-template/...) are never published. See CLOUDFLARE.md.
+{
+  "name": "paxlumeweb",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
