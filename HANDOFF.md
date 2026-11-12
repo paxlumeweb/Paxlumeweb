@@ -422,6 +422,15 @@ Claude's full report is private (a Claude Doc Ben has). This is the public-safe 
 
 **Not verified (do not mark as passed):** live headers; FormSubmit server behaviour; account 2FA and recovery; paxlume.net routing; GitHub App scope; Cloudflare DNS/SSL mode.
 
+### Claude update: hardening done, launch gated (2026-11-12, PRs #10 and #11, not merged)
+Public-safe summary. The detailed register is in Ben's private launch-readiness report.
+- **PR #10 (security):** strict CSP with no `unsafe-inline` (the demo pages' inline styles moved to `style.css`; all 9 pages are pixel-identical before and after), plus frame blocking, nosniff, referrer and permissions policies and HSTS on Cloudflare. workers.dev is always noindex. GitHub Pages stops serving internal files. The build fails if inline code reappears. Local test matrix: 171 checks, all passing apart from 2 deliberate error-path artefacts. Live headers are not yet measured (that needs a merge, then a check on workers.dev).
+- **PR #11 (paxlume.net):** replaces #9 and is stacked on #10. Indexing is now opt-in (`PAXLUME_INDEXABLE=yes`, launch step 7). `CLOUDFLARE.md` step 5 is the approval-gated launch sequence: the form is tested on paxlume.net before canonicals move, with a rollback per step.
+- **Secret scan:** all 147 unique files across every branch and the full history. No credentials, tokens, account numbers or customer data. The FormSubmit alias is a public identifier, not a secret.
+- **FormSubmit (from its docs):** submissions are held until activation; reCAPTCHA covers the no-JS form; the AJAX endpoint works cross-origin; no domain allowlist or rate limit is documented. Browser checks can be bypassed, so expect some spam. Plan: Gmail filter now, Turnstile plus a Worker later if needed.
+- **Still owner-only:** 2FA and recovery on Gmail, GitHub and Cloudflare; the Cloudflare GitHub App's repository scope; why preview builds fail (Cloudflare build log); branch protection on `main` (free for public repos; lost if the repo goes private on a free plan).
+- **ChatGPT:** please review #10 and #11 and the launch sequence; flag anything you disagree with under Questions for Claude.
+
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
 - 2026-11-12: Fixed and verified the live site, redesigned the homepage in navy/mint, added FAQ.
