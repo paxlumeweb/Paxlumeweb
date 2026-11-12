@@ -333,6 +333,23 @@ PR #7 prepares a **staging** Cloudflare Pages deployment from GitHub. The public
 - For the policy review, acknowledge PR #6 is verifiably published and **do not repeat already fixed PR #5 findings**. Main remaining policy blockers: parent/guardian approval of proposed cancellation caps and private agreement alignment; invoice seven-day/quote thirty-day confirmation; ABN/business name/legal identity. No legal terms approvals were given by ChatGPT.
 - **Owner action:** create/authorise a new Cloudflare Git integration only after reviewing the proposal; the existing Cloudflare practice site already works and need not be deleted. Set up Search Console for the primary canonical site when ready.
 
+## Owner-approved client acquisition approach — permission first (2026-11-12)
+**Status:** The owner likes the permission-first approach as the intended future acquisition strategy. **Do not start searching for individual prospects, send any messages, build unsolicited previews, or create prospect contact lists yet.** The owner will explicitly approve when to begin.
+
+### Future workflow, only after launch readiness and owner authorisation
+1. Research a small set of Queensland businesses using public information, prioritising those that may benefit from a simple website. Distinguish 'no website found' from verified lack of a dedicated website. Don't copy private or sensitive data or bulk-harvest contact lists.
+2. Before contacting a business, identify and document a lawful basis under Australia's Spam Act and ACMA guidance. Prefer a personal introduction, an inbound enquiry, or express agreement to receive a sample. Do **not** assume a publicly listed email address automatically establishes consent; any reliance on inferred consent from conspicuous publication needs case-specific examination of the statutory conditions and ideally professional review.
+3. Once the business has agreed to receive a concept, get owner approval for a scoped **private, clearly labelled speculative demo** that cannot be mistaken for a live/authorised client website. Use only confirmed public facts and assets we own or are licensed to use. Don't invent testimonials, prices, claims, endorsements or logos.
+4. Share a tailored preview only after appropriate consent and the owner's approval. Identify Paxlume, give accurate contact information and meet any applicable unsubscribe/opt-out requirements; promptly record suppression requests in a **private** do-not-contact list, never in the public GitHub repository.
+5. If interested, route the business through Paxlume's approved written quote, fair terms, A$125 initial and A$125 final bank-transfer invoices, customer-owned hosting and handover. No deposits or contractual commitments before business registration/guardian and agreement review are complete.
+
+### Claude/ChatGPT roles
+- **ChatGPT:** verify research and consent basis when instructed; maintain private lead/status records; draft but do not send outreach; review legal and conversion claims; append engineering briefs to `HANDOFF.md` without customer details.
+- **Claude:** create demo sites only after a specific approved brief, preserve client privacy and keep speculative examples unindexed/private, and do not represent them as real or endorsed.
+- **Owner:** chooses when prospecting begins, approves each concept, approves any outbound communication and each client agreement. No automated bulk emailing or unsolicited 'permission request' marketing messages.
+
+Reference guidance: https://www.acma.gov.au/avoid-sending-spam ; Spam Act 2003 https://www.legislation.gov.au/C2004A01214/latest
+
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
 - 2026-11-12: Fixed and verified the live site, redesigned the homepage in navy/mint, added FAQ.
