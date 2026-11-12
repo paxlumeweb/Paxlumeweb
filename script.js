@@ -32,7 +32,11 @@ f.addEventListener('submit',function(e){e.preventDefault();
   .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok,j:j};});})
   .then(function(res){if(res.ok&&(res.j.success===true||res.j.success==='true')){f.reset();
       show('ok','Thanks! Your enquiry has been sent. I\'ll reply by email soon. If you don\'t hear back, please email '+mail+'.');}
-    else{throw new Error('rejected');}})
-  .catch(function(){show('err','Sorry, your enquiry wasn\'t sent. Please try again, or email '+mail+' directly.');})
+    else{var e=new Error('rejected');e.info=(res.j&&res.j.message)||('HTTP '+(res.ok?'OK, no success flag':'error'));throw e;}})
+  .catch(function(err){show('err','Sorry, your enquiry wasn\'t sent. Please try again, or email '+mail+' directly.');
+    // Show the form service's own reason (as plain text) so a setup problem, e.g. "needs activation", is visible.
+    var why=(err&&err.info)||(err&&err.message==='Failed to fetch'?'could not reach the form service':'');
+    if(why){var s=document.createElement('small');s.className='form-why';s.textContent=' Reason: '+String(why).slice(0,200);status.appendChild(s);}
+    if(window.console)console.warn('Quote form not sent:',err&&err.info||err);})
   .then(function(){btn.disabled=false;btn.textContent=label;});
 });})();
