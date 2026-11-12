@@ -89,8 +89,26 @@ else
   echo "Staging build: every page is sent with X-Robots-Tag: noindex."
 fi
 
+# ---- 3b. Security headers (every Cloudflare build) -----------------------------
+# The site is static: its own CSS/JS/fonts/images, plus the quote form, which
+# posts to FormSubmit (fetch for JS visitors, a normal POST without JS).
+# 'unsafe-inline' for styles only: the three demo pages use a <style> block.
+# No inline scripts exist, so scripts stay 'self' only. If you add a third-party
+# script, font, image host or form service, add it here or it will be blocked.
+CSP="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+{
+  printf '/*\n'
+  printf '  Content-Security-Policy: %s\n' "$CSP"
+  printf '  X-Content-Type-Options: nosniff\n'
+  printf '  X-Frame-Options: DENY\n'
+  printf '  Referrer-Policy: strict-origin-when-cross-origin\n'
+  printf '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()\n'
+  printf '  Strict-Transport-Security: max-age=15552000\n'
+} >> "$OUT/_headers"
+echo "Security headers added to _headers."
+
 # ---- 4. Safety checks ----------------------------------------------------------
-for bad in HANDOFF.md README.md CLOUDFLARE.md starter-template scripts .git .nojekyll; do
+for bad in HANDOFF.md README.md CLOUDFLARE.md starter-template scripts .git .nojekyll _config.yml; do
   [ ! -e "$OUT/$bad" ] || fail "internal file '$bad' ended up in $OUT"
 done
 if find "$OUT" -name '*.md' | grep -q .; then fail "a Markdown file ended up in $OUT"; fi

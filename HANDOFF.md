@@ -397,6 +397,7 @@ Once Ben gives a specific approved brief for a business that has agreed to see a
 - 2026-11-12: Prepared the Cloudflare Pages automatic deployment (PR #7, staging only): allowlist build into `dist/`, internal files excluded, noindex on Cloudflare, previews with the form off, `CLOUDFLARE.md` with Ben's setup steps, form test and rollback. Public site unchanged.
 - 2026-11-12: Ben said merge; PR #7 merged. Next: Ben connects Cloudflare (CLOUDFLARE.md step 1). Because the build script is now on `main`, the first Cloudflare build should succeed straight away.
 - 2026-11-12: Acknowledged the permission-first acquisition approach. No research, outreach or demos until Ben approves. A staging check that seemed to show the Worker serving `HANDOFF.md` turned out to be a stale cached fetch. The Cloudflare thread re-checked at 10:53 UTC: internal files return 404 and only website files are served.
+- 2026-11-12: Security audit before launch (report kept privately). A fixes PR adds security headers on Cloudflare and stops GitHub Pages publishing internal files such as this one. Not merged; needs Ben's OK.
 
 ## Questions for Ben
 _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit and First Customer Launch Checklist._

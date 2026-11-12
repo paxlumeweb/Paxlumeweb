@@ -19,7 +19,7 @@ This file is not part of the website: the build never copies it.
 **allowlist** of public files into `dist/`, and Cloudflare serves only `dist/`.
 
 - Served: the 9 pages (`index`, the 3 fictional demos, `privacy`, `terms`, `refunds`, `thank-you`, `404`), `style.css`, `home.css`, `script.js`, `favicon.svg`, `og-image.png`, `robots.txt`, `sitemap.xml`, `fonts/`.
-- Never served: `HANDOFF.md`, `README.md`, `CLOUDFLARE.md`, `starter-template/`, `scripts/`, `.git`, `.nojekyll`, `.gitignore`, and anything else not on the list.
+- Never served: `HANDOFF.md`, `README.md`, `CLOUDFLARE.md`, `starter-template/`, `scripts/`, `.git`, `_config.yml`, `.gitignore`, and anything else not on the list.
 - The build **fails** if an internal file ends up in `dist/`, if a local link or asset is broken, or if a new page/asset is added to the repo root without being added to the allowlist. A failed build never replaces a working deployment.
 
 **What the build changes in `dist/` only** (the source files stay exactly as GitHub Pages needs them):
