@@ -20,8 +20,8 @@ This file is not linked from the website. Note: this repo is public, so never pu
 
 ## Tasks from ChatGPT
 <!-- Add new tasks at the bottom. Format: - [ ] YYYY-MM-DD: what to do (why) -->
-- [ ] 2026-11-12: Audit the current email-only enquiry process and propose a mobile-friendly, accessible, $0 quote-request form with spam safeguards and a privacy notice; explain email delivery and activation requirements, and get owner approval before integrating any third-party service (to make customer enquiries easier without losing messages or exposing customer data).
-- [ ] 2026-11-12: Review the $250 Starter offer, FAQ, calls to action and contact journey; prepare a focused conversion-improvement proposal or preview covering clear inclusions, exclusions, hosting/domain responsibilities and next steps, without changing the approved navy/mint design until owner approval (to help win the first four paying customers).
+- [ ] 2026-11-12 (unblocked: form designed, waiting on Ben to build it in Google Forms): Audit the current email-only enquiry process and propose a mobile-friendly, accessible, $0 quote-request form with spam safeguards and a privacy notice; explain email delivery and activation requirements, and get owner approval before integrating any third-party service (to make customer enquiries easier without losing messages or exposing customer data).
+- [ ] 2026-11-12 (done in PR #2, waiting on Ben's approval to merge): Review the $250 Starter offer, FAQ, calls to action and contact journey; prepare a focused conversion-improvement proposal or preview covering clear inclusions, exclusions, hosting/domain responsibilities and next steps, without changing the approved navy/mint design until owner approval (to help win the first four paying customers).
 - [x] 2026-11-12: Check the deployed GitHub Pages site on mobile and desktop, including all three fictional demo links, navigation, accessibility, loading performance, metadata and enquiry buttons; document the test results and propose fixes via pull request for review (to avoid losing potential customers through technical problems).
 
 ## Updates from ChatGPT — Gmail and business workflow (2026-11-12)
@@ -81,6 +81,21 @@ Copy-only changes, using the existing sections and styles:
 - Claude has no Gmail access in this workspace, so Claude cannot confirm the labels, signature or filters, and doesn't claim to.
 - Reminder: GitHub Pages also serves this file publicly at `/HANDOFF.md`, so keep everything in it safe to be public.
 
+## Ben's decisions (2026-11-12)
+1. **Enquiry form:** Google Forms under paxlumeweb@gmail.com. No Google account needed to submit, email notifications on, keep the email option, and include a short privacy notice. Ben sees the form before it's linked on the site.
+2. **Technical fixes:** approved for a pull request. Screenshots before merge, no unnecessary design changes.
+3. **Turnaround:** advertise "typically 10–14 business days" after all content is received and scope agreed. Larger projects may take longer, and there's no guaranteed date before Ben checks his availability.
+4. **Payments:** keep the price at $250 AUD. Don't publish the deposit or payment method yet; they get finalised with adult help and clear terms first.
+5. **Hosting:** customers own their websites and hosting accounts wherever possible, using free hosting that allows commercial sites. Paxlume helps with setup, and customers pay directly for domains or paid hosting. Check GitHub Pages' terms. Don't migrate anything without approval.
+6. **About line:** "Paxlume Web Studio is an independent Brisbane-based web design studio focused on creating modern, affordable websites for small businesses." No full name, age, school or personal info. Ben approves the wording before publishing.
+7. **Gmail filter:** Ben sets it up with ChatGPT's guidance. Claude doesn't change any Gmail settings.
+
+### What's unblocked and where it's at
+- **Quote form (task 1):** Claude can't sign in to Ben's Google account, so the form is designed in a private build guide (questions, privacy notice, settings, test checklist) that Ben builds from. Once Ben sends the form link and two test enquiries arrive in Gmail, Claude adds a "Request a quote" button next to the email button, on a branch with screenshots.
+- **Technical fixes (task 3) and Starter wording (task 2):** done in PR #2 (https://github.com/paxlumeweb/Paxlumeweb/pull/2), not merged. It adds bigger tap areas, a share image (`og-image.png`), demo-page favicon and share tags, turnaround wording, a "You own your website" note, FAQ answers for "How long does it take?" and "Who owns the website?", and the about line. The design is unchanged and the deposit is not mentioned. Waiting on Ben's OK.
+- **GitHub Pages terms:** GitHub's Pages terms say Pages is "not intended for or allowed to be used as a free web hosting service to run your online business, e-commerce site, or any other website that is primarily directed at either facilitating commercial transactions", and is meant mainly "as a showcase for personal and organizational projects". Paxlume's own portfolio site has no payments or shop, so it reads as an allowed showcase and can stay. **Customer business sites are a grey area, so don't host them on GitHub Pages.** Recommended for customer sites: Cloudflare Pages or Netlify free plans, in an account the customer owns. Both offer free custom domains and HTTPS. Their terms on commercial use and minimum age still need checking (by Claude and a parent/guardian) before the first customer site. Nothing has been migrated.
+- **Gmail tip for Ben and ChatGPT:** Google Forms notification emails don't use the "Website enquiry" subject. The filter needs a second rule on the Forms sender (check the address on the first test email).
+
 ## Done by Claude
 <!-- Newest at the bottom. Format: - YYYY-MM-DD: what changed (link or file) -->
 - 2026-11-12: Fixed and verified the live site, redesigned the homepage in navy/mint, added FAQ.
@@ -88,15 +103,14 @@ Copy-only changes, using the existing sections and styles:
 - 2026-11-12: Read ChatGPT's update and answered Questions for Claude (see "Answers from Claude" above). Confirmed contact is still email-only: no form and no thank-you page are deployed.
 - 2026-11-12: Task 3 done: checked all 4 pages on phone and desktop (links, labels, metadata, accessibility, size). No blocking problems. 3 small fixes proposed, waiting on Ben's OK before a PR.
 - 2026-11-12: Wrote proposals for task 1 (form options) and task 2 (offer and contact copy). No site files changed.
+- 2026-11-12: Recorded Ben's 7 decisions. Opened PR #2 with the approved tap-target, share-image and demo metadata fixes plus the Starter wording (turnaround, ownership, FAQ, about line), with before/after screenshots. Not merged.
+- 2026-11-12: Designed the Google Forms quote form for Ben to build (private build guide). Checked GitHub Pages terms: fine for Paxlume's portfolio, not recommended for customer sites.
 
 ## Questions for Ben
-1. **Enquiry form:** Google Form (recommended), Web3Forms/Formspree on-page form, or stay email-only with a pre-filled email? For a sign-up, please check the service's age terms with a parent or guardian.
-2. **Small technical fixes (task 3):** OK for Claude to open a pull request with them? You'll get screenshots before anything goes live.
-3. **Turnaround:** how many days should the site promise for a Starter website?
-4. **Payment:** OK to show the deposit (draft is $125 upfront + $125 on approval) and payment method on the site, or keep it for quotes only? This depends on the terms you're reviewing with your parent/guardian.
-5. **Hosting:** should customer sites be hosted free under Paxlume's GitHub, or under an account the customer owns? This affects the "Help getting the site published" wording.
-6. **About you:** do you want a short "Who's behind Paxlume" line (for example first name + Brisbane), or keep it anonymous?
-7. **Gmail filter:** do you want to add the "Website enquiry" filter yourself (steps are in the Business Kit), or have ChatGPT do it?
+_Earlier questions 1–7 were answered on 2026-11-12 (see "Ben's decisions" above)._
+1. **PR #2:** please look at the screenshots and say whether to merge (goes live) or what to change.
+2. **Quote form:** build it from the build guide Claude shared in the project, run the two tests, then send Claude the form link. Please check two things in the privacy notice and messages: the "reply within 2 business days" promise, and deleting old enquiries after 12 months. Show the privacy notice to a parent/guardian.
+3. **Customer hosting:** before the first paying customer, OK for Claude to compare Cloudflare Pages and Netlify terms in detail and recommend one? (Research only, no sign-ups.)
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.
