@@ -69,7 +69,7 @@ This file is not linked from the website. Note: this repo is public, so never pu
 ### Task 1 proposal: quote-request form ($0)
 Recommended: **keep the email button and add a form alongside it**, never replacing email. Options, best first:
 1. **Google Form owned by paxlumeweb@gmail.com**, linked from a "Request a quote" button. Free, no new company gets the data, answers land in a Google Sheet (can act as the lead tracker), Google handles spam, and email alerts for new answers can be turned on in Forms. Downside: it opens Google's styling, not navy/mint.
-1. **Web3Forms or Formspree (free tiers)** with an on-page navy/mint form. Needs a sign-up with the business Gmail, an email confirmation/activation step, a honeypot field plus that service's captcha for spam, and a `thank-you.html` page. Free-tier limits apply (roughly 50-250 submissions a month), and enquiry data passes through that company. Check age requirements in their terms with a parent or guardian before signing up.
+2. **Web3Forms or Formspree (free tiers)** with an on-page navy/mint form. Needs a sign-up with the business Gmail, an email confirmation/activation step, a honeypot field plus that service's captcha for spam, and a `thank-you.html` page. Free-tier limits apply (roughly 50-250 submissions a month), and enquiry data passes through that company. Check age requirements in their terms with a parent or guardian before signing up.
 3. Stay email-only and add a pre-filled email body (name, business, services, phone) so enquiries arrive complete.
 - Whatever is chosen, the form asks only for: name, email, optional phone, business name, what the business does, and anything else. A short privacy note sits under it: "We only use these details to reply to your enquiry. We don't sell or share them." Plus a "Prefer email? paxlumeweb@gmail.com" line.
 - Before anyone is told it works: send 2 test submissions from a phone and a computer and confirm they arrive in Gmail (and not in spam), then record that here.
@@ -91,11 +91,11 @@ Copy-only changes, using the existing sections and styles:
 ## Ben's decisions (2026-11-12)
 1. **Enquiry form:** Google Forms under paxlumeweb@gmail.com. No Google account needed to submit, email notifications on, keep the email option, and include a short privacy notice. Ben sees the form before it's linked on the site.
 2. **Technical fixes:** approved for a pull request. Screenshots before merge, no unnecessary design changes.
-2. **Turnaround:** advertise "typically 10–14 business days" after all content is received and scope agreed. Larger projects may take longer, and there's no guaranteed date before Ben checks his availability.
-3. **Payments:** keep the price at $250 AUD. Don't publish the deposit or payment method yet; they get finalised with adult help and clear terms first.
-4. **Hosting:** customers own their websites and hosting accounts wherever possible, using free hosting that allows commercial sites. Paxlume helps with setup, and customers pay directly for domains or paid hosting. Check GitHub Pages' terms. Don't migrate anything without approval.
-5. **About line:** "Paxlume Web Studio is an independent Brisbane-based web design studio focused on creating modern, affordable websites for small businesses." No full name, age, school or personal info. Ben approves the wording before publishing.
-6. **Gmail filter:** Ben sets it up with ChatGPT's guidance. Claude doesn't change any Gmail settings.
+3. **Turnaround:** advertise "typically 10–14 business days" after all content is received and scope agreed. Larger projects may take longer, and there's no guaranteed date before Ben checks his availability.
+4. **Payments:** keep the price at $250 AUD. Don't publish the deposit or payment method yet; they get finalised with adult help and clear terms first.
+5. **Hosting:** customers own their websites and hosting accounts wherever possible, using free hosting that allows commercial sites. Paxlume helps with setup, and customers pay directly for domains or paid hosting. Check GitHub Pages' terms. Don't migrate anything without approval.
+6. **About line:** "Paxlume Web Studio is an independent Brisbane-based web design studio focused on creating modern, affordable websites for small businesses." No full name, age, school or personal info. Ben approves the wording before publishing.
+7. **Gmail filter:** Ben sets it up with ChatGPT's guidance. Claude doesn't change any Gmail settings.
 
 ### What's unblocked and where it's at
 - **Quote form (task 1):** Claude can't sign in to Ben's Google account, so the form is designed in a private build guide (questions, privacy notice, settings, test checklist) that Ben builds from. Once Ben sends the form link and two test enquiries arrive in Gmail, Claude adds a "Request a quote" button next to the email button, on a branch with screenshots.
@@ -114,7 +114,7 @@ Copy-only changes, using the existing sections and styles:
 5. **Spam, accessibility, privacy.** Implement a honeypot and provider-supported CAPTCHA/anti-abuse measures if available, without unnecessarily blocking legitimate visitors. Use responsive inputs, labels, keyboard navigation, focus states, clear error messages and normal form submission without JS when possible. Show an accurate, short privacy notice explaining that details are used to respond to enquiries and may be processed by the chosen form provider. Do **not** claim there is no third-party sharing. Link to a reviewed privacy notice where needed. Keep all real customer responses and any testing with identifiable customer information out of GitHub and `HANDOFF.md`. Avoid unsolicited follow-up or marketing consent by default.
 6. **Delivery sequence (do as much as possible autonomously).** First implement the form on a separate GitHub branch and open a pull request; provide screenshots of desktop/mobile designs and list any unavoidable owner steps to activate the selected provider. If service selection/activation is not yet authorised, leave the current live contact option functional and clearly mark the form as untested/draft in PR; don't merge a nonworking customer-facing form. Ask for explicit owner approval before deploying the integration or changing services.
 7. **Acceptance tests.** After service activation with approval, run at least two real test enquiries (desktop and mobile) using **non-personal test data**; verify they actually arrive in business Gmail including spam check, that recipient, subject/reply-to and thank-you/error states work, that validation and anti-spam work without breaking access, and that the email fallback remains functional. Get owner confirmation of email receipt before calling the feature live; don't publish the live form until tests pass. Log only non-sensitive test outcomes and file/PR links in `Done by Claude`.
-7. **Report back.** Explain which delivery service you recommend and why, what you built, the PR link, screenshots, exact activation/approval steps (ideally just a confirmation email or one account-authorised step), what is blocked, and whether it is deployed. Update `Questions for Ben` with only necessary decisions; ask about any promises (e.g. 2-business-day reply time or 12-month deletion) rather than silently assuming them. Do not contact customers, spend money or publish large design changes without the owner's approval.
+8. **Report back.** Explain which delivery service you recommend and why, what you built, the PR link, screenshots, exact activation/approval steps (ideally just a confirmation email or one account-authorised step), what is blocked, and whether it is deployed. Update `Questions for Ben` with only necessary decisions; ask about any promises (e.g. 2-business-day reply time or 12-month deletion) rather than silently assuming them. Do not contact customers, spend money or publish large design changes without the owner's approval.
 
 ### Claude's progress on the on-site quote form (2026-11-12)
 - **Status: LIVE** (PR #3 merged 2026-11-12 with Ben's OK). To switch the form off quickly, set `data-form-active="false"` in `index.html`; visitors then see the email fallback.
@@ -215,13 +215,13 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 
 ## Questions for Ben
 _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit._
-2. **ABN (with parent/guardian):** without an ABN, a business client may withhold 47% of a payment unless an ATO exception applies and you give them a signed supplier statement (which includes your address). Recommendation: apply for a free ABN before the first business client.
-3. **Refund wording (with parent/guardian):** approve agreement v2: full refund before work starts, keep up to A$60 if cancelled before the first preview, deposit kept after a preview (no final payment, nothing published), full refund if Paxlume can't finish.
-4. **Due dates and quote validity:** invoices due 7 days after issue, quotes valid 30 days. OK?
-5. **Legal name on invoices:** invoices say "[your legal name] trading as Paxlume Web Studio". A business name other than your own name legally needs registering (A$47 a year). Decide with a parent/guardian.
-6. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
-7. **Reply promise** (still open): promise a reply time, such as 2 business days?
-8. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
+1. **ABN (with parent/guardian):** without an ABN, a business client may withhold 47% of a payment unless an ATO exception applies and you give them a signed supplier statement (which includes your address). Recommendation: apply for a free ABN before the first business client.
+2. **Refund wording (with parent/guardian):** approve agreement v2: full refund before work starts, keep up to A$60 if cancelled before the first preview, deposit kept after a preview (no final payment, nothing published), full refund if Paxlume can't finish.
+3. **Due dates and quote validity:** invoices due 7 days after issue, quotes valid 30 days. OK?
+4. **Legal name on invoices:** invoices say "[your legal name] trading as Paxlume Web Studio". A business name other than your own name legally needs registering (A$47 a year). Decide with a parent/guardian.
+5. **Dry run:** OK (with parent/guardian) to create one free test Cloudflare account to practise the client handover, then delete it?
+6. **Reply promise** (still open): promise a reply time, such as 2 business days?
+7. **Keeping enquiries** (still open): delete enquiries that don't go ahead after a set time, such as 12 months?
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.
