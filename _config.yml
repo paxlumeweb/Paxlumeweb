@@ -1,0 +1,14 @@
+# GitHub Pages settings. Not part of the Cloudflare build (scripts/build-site.sh).
+# Internal notes and tooling below are kept in the repo but NOT published by
+# GitHub Pages, so https://paxlumeweb.github.io/Paxlumeweb/HANDOFF.md etc. return 404.
+# They are still readable on github.com while the repository is public.
+# HTML pages have no front matter, so Jekyll copies them unchanged.
+exclude:
+  - HANDOFF.md
+  - README.md
+  - CLOUDFLARE.md
+  - scripts/
+  - starter-template/
+  - wrangler.jsonc
+  - dist/
+  - .gitignore

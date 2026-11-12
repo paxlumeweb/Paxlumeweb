@@ -15,7 +15,7 @@ Static portfolio website for Paxlume Web Studio, with three **fictional demonstr
 | `style.css` | Shared styles for every page |
 | `script.js` | Shared scripts (footer year, demo contact forms) |
 | `favicon.svg` | Browser tab icon |
-| `.nojekyll` | Tells GitHub Pages to serve files as-is |
+| `_config.yml` | GitHub Pages settings: keeps internal files (HANDOFF, READMEs, scripts, starter template) off the published site |
 | `CLOUDFLARE.md` | Cloudflare Pages staging deployment: setup steps, previews, form test, switch and rollback (not served) |
 | `scripts/build-site.sh` | Builds the public site into `dist/` for Cloudflare from an allowlist of files |
 | `starter-template/` | Reusable one-page template for client Starter sites (placeholders only, never client data). See its README |

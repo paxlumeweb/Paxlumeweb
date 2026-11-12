@@ -19,7 +19,7 @@ This file is not part of the website: the build never copies it.
 **allowlist** of public files into `dist/`, and Cloudflare serves only `dist/`.
 
 - Served: the 9 pages (`index`, the 3 fictional demos, `privacy`, `terms`, `refunds`, `thank-you`, `404`), `style.css`, `home.css`, `script.js`, `favicon.svg`, `og-image.png`, `robots.txt`, `sitemap.xml`, `fonts/`.
-- Never served: `HANDOFF.md`, `README.md`, `CLOUDFLARE.md`, `starter-template/`, `scripts/`, `.git`, `.nojekyll`, `.gitignore`, and anything else not on the list.
+- Never served: `HANDOFF.md`, `README.md`, `CLOUDFLARE.md`, `starter-template/`, `scripts/`, `.git`, `_config.yml`, `.gitignore`, and anything else not on the list.
 - The build **fails** if an internal file ends up in `dist/`, if a local link or asset is broken, or if a new page/asset is added to the repo root without being added to the allowlist. A failed build never replaces a working deployment.
 
 **What the build changes in `dist/` only** (the source files stay exactly as GitHub Pages needs them):
@@ -28,6 +28,8 @@ This file is not part of the website: the build never copies it.
 2. Search engines: every response gets `X-Robots-Tag: noindex` (via a generated `_headers` file). Cloudflare already does this for previews; this also covers the production `pages.dev` address so it can't compete with GitHub Pages. Canonical tags still point to GitHub Pages as a second safeguard.
 3. Quote form on **previews**: switched off (`data-form-active="false"`). Visitors see the "please email" fallback. This stops previews sending enquiries and stops every new preview address triggering a FormSubmit activation email.
 4. Quote form on **main**: left on. The no-JavaScript thank-you redirect (`_next`) points at the Cloudflare deployment instead of GitHub Pages.
+
+5. Security headers on every page: a Content-Security-Policy (only the site's own files, plus FormSubmit for the form; no inline code allowed), `X-Frame-Options: DENY`, `nosniff`, a referrer policy, a permissions policy and HSTS. The `workers.dev` address always gets `noindex`, even after launch. The build fails if a page gains an inline `<style>`, `style="..."`, inline `<script>` or `on...=""` handler, because the CSP would block it. GitHub Pages can't send these headers.
 
 Optional settings (Cloudflare project > Settings > Variables and Secrets). **Leave both unset until the switch:**
 

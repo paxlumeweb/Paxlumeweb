@@ -89,11 +89,39 @@ else
   echo "Staging build: every page is sent with X-Robots-Tag: noindex."
 fi
 
+# ---- 3b. Security headers (every Cloudflare build) -----------------------------
+# The site is static: its own CSS/JS/fonts/images, plus the quote form, which
+# posts to FormSubmit (fetch for JS visitors, a normal POST without JS).
+# No inline scripts or styles exist (the safety checks below enforce this), so
+# there is no 'unsafe-inline'. If you add a third-party script, font, image host
+# or form service, add it here or browsers will block it.
+CSP="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+{
+  printf '/*\n'
+  printf '  Content-Security-Policy: %s\n' "$CSP"
+  printf '  X-Content-Type-Options: nosniff\n'
+  printf '  X-Frame-Options: DENY\n'
+  printf '  Referrer-Policy: strict-origin-when-cross-origin\n'
+  printf '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()\n'
+  printf '  Strict-Transport-Security: max-age=15552000\n'
+  # The workers.dev staging address is never indexed, whatever the settings
+  # above, so it can't compete with the real domain after launch.
+  printf 'https://paxlumeweb.paxlumeweb.workers.dev/*\n'
+  printf '  X-Robots-Tag: noindex\n'
+} >> "$OUT/_headers"
+echo "Security headers added to _headers."
+
 # ---- 4. Safety checks ----------------------------------------------------------
-for bad in HANDOFF.md README.md CLOUDFLARE.md starter-template scripts .git .nojekyll; do
+for bad in HANDOFF.md README.md CLOUDFLARE.md starter-template scripts .git .nojekyll _config.yml; do
   [ ! -e "$OUT/$bad" ] || fail "internal file '$bad' ended up in $OUT"
 done
 if find "$OUT" -name '*.md' | grep -q .; then fail "a Markdown file ended up in $OUT"; fi
+
+# The CSP has no 'unsafe-inline', so inline styles, inline scripts and on*=""
+# handlers would silently break. Put them in style.css / script.js instead.
+if grep -lE '<style|style="|<script>|<script [^>]*>[^<]|[[:space:]]on[a-z]+="' "$OUT"/*.html; then
+  fail "inline style/script found in the pages above; move it to style.css or script.js (the CSP blocks inline code)"
+fi
 
 # Every local href/src/url() in the built pages must point at a built file.
 missing=0
