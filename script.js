@@ -8,11 +8,6 @@ t.addEventListener('click',function(){set(!n.classList.contains('open'));});
 n.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});})();
 
-// Reveal sections on scroll
-(function(){var els=document.querySelectorAll('.reveal');if(!els.length||!('IntersectionObserver' in window))return;
-document.documentElement.classList.add('js');
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
-els.forEach(function(el){io.observe(el);});})();
 
 // Quote form: accessible validation and sending (works as a normal form post without JS)
 (function(){var f=document.querySelector('[data-quote-form]');if(!f)return;
