@@ -21,8 +21,8 @@ This file is not linked from the website. Note: this repo is public, so never pu
 ## Tasks from ChatGPT
 <!-- Add new tasks at the bottom. Format: - [ ] YYYY-MM-DD: what to do (why) -->
 - [ ] 2026-11-12 (unblocked: form designed, waiting on Ben to build it in Google Forms): Audit the current email-only enquiry process and propose a mobile-friendly, accessible, $0 quote-request form with spam safeguards and a privacy notice; explain email delivery and activation requirements, and get owner approval before integrating any third-party service (to make customer enquiries easier without losing messages or exposing customer data).
-- [ ] 2026-11-12 (done in PR #2, waiting on Ben's approval to merge): Review the $250 Starter offer, FAQ, calls to action and contact journey; prepare a focused conversion-improvement proposal or preview covering clear inclusions, exclusions, hosting/domain responsibilities and next steps, without changing the approved navy/mint design until owner approval (to help win the first four paying customers).
-- [x] 2026-11-12: Check the deployed GitHub Pages site on mobile and desktop, including all three fictional demo links, navigation, accessibility, loading performance, metadata and enquiry buttons; document the test results and propose fixes via pull request for review (to avoid losing potential customers through technical problems).
+- [x] 2026-11-12 (done, merged in PR #2): Review the $250 Starter offer, FAQ, calls to action and contact journey; prepare a focused conversion-improvement proposal or preview covering clear inclusions, exclusions, hosting/domain responsibilities and next steps, without changing the approved navy/mint design until owner approval (to help win the first four paying customers).
+- [x] 2026-11-12 (done, fixes merged in PR #2): Check the deployed GitHub Pages site on mobile and desktop, including all three fictional demo links, navigation, accessibility, loading performance, metadata and enquiry buttons; document the test results and propose fixes via pull request for review (to avoid losing potential customers through technical problems).
 
 ## Updates from ChatGPT — Gmail and business workflow (2026-11-12)
 - Business Gmail `paxlumeweb@gmail.com` was created by the owner and successfully verified through ChatGPT's Gmail connector.
@@ -104,13 +104,13 @@ Copy-only changes, using the existing sections and styles:
 - 2026-11-12: Task 3 done: checked all 4 pages on phone and desktop (links, labels, metadata, accessibility, size). No blocking problems. 3 small fixes proposed, waiting on Ben's OK before a PR.
 - 2026-11-12: Wrote proposals for task 1 (form options) and task 2 (offer and contact copy). No site files changed.
 - 2026-11-12: Recorded Ben's 7 decisions. Opened PR #2 with the approved tap-target, share-image and demo metadata fixes plus the Starter wording (turnaround, ownership, FAQ, about line), with before/after screenshots. Not merged.
+- 2026-11-12: Ben approved PR #2; merged to main and live.
 - 2026-11-12: Designed the Google Forms quote form for Ben to build (private build guide). Checked GitHub Pages terms: fine for Paxlume's portfolio, not recommended for customer sites.
 
 ## Questions for Ben
 _Earlier questions 1–7 were answered on 2026-11-12 (see "Ben's decisions" above)._
-1. **PR #2:** please look at the screenshots and say whether to merge (goes live) or what to change.
-2. **Quote form:** build it from the build guide Claude shared in the project, run the two tests, then send Claude the form link. Please check two things in the privacy notice and messages: the "reply within 2 business days" promise, and deleting old enquiries after 12 months. Show the privacy notice to a parent/guardian.
-3. **Customer hosting:** before the first paying customer, OK for Claude to compare Cloudflare Pages and Netlify terms in detail and recommend one? (Research only, no sign-ups.)
+1. **Quote form:** build it from the build guide Claude shared in the project, run the two tests, then send Claude the form link. Please check two things in the privacy notice and messages: the "reply within 2 business days" promise, and deleting old enquiries after 12 months. Show the privacy notice to a parent/guardian.
+2. **Customer hosting:** before the first paying customer, OK for Claude to compare Cloudflare Pages and Netlify terms in detail and recommend one? (Research only, no sign-ups.)
 
 ## Rules (always)
 - Demo sites stay clearly labelled as fictional samples.
