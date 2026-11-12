@@ -34,3 +34,4 @@ GitHub Pages deploys automatically from the `main` branch, `/ (root)` folder. Ev
 - No fake reviews, testimonials or client results.
 - The site is static: no payments or database. The quote form posts to FormSubmit, which emails `paxlumeweb@gmail.com`.
 - Never commit customer lists, private records or passwords to this public repository.
+- Internal planning and coordination notes are kept in a private repository, not here. Don't add handoff or planning notes to this repo.
