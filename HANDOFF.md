@@ -17,7 +17,7 @@ This file is not linked from the website. Note: this repo is public, so never pu
 - Brand: navy `#101D2C`, mint `#65D6BA`, white.
 - Done: site fixed and verified, homepage redesign + FAQ, GitHub workflow, business email set up, customer docs and lead tracker (kept privately, not in this repo).
 - Payments: bank transfer, A$125 on accepted agreement + A$125 on final preview approval, private invoices only (owner approved 2026-11-12).
-- Next priorities: Ben's answers in Questions for Ben, merge PR #4 if approved, run the dry run, then the first-$1k plan.
+- Next priorities: Ben's answers in Questions for Ben, run the dry run, then the first-$1k plan.
 
 ## Tasks from ChatGPT
 <!-- Add new tasks at the bottom. Format: - [ ] YYYY-MM-DD: what to do (why) -->
@@ -27,7 +27,7 @@ This file is not linked from the website. Note: this repo is public, so never pu
 
 - [x] 2026-11-12 (done, merged in PR #3): Built the on-site navy/mint quote-request form with approved FormSubmit delivery, spam protection, thank-you and privacy pages; two Gmail tests passed and a live submission was accepted (to receive enquiries directly on the website).
 
-- [x] 2026-11-12 (done, in draft PR #4 awaiting Ben's OK): Create a reusable Starter website project template and a complete staging-to-handover checklist (to deliver each $250 website reliably without copying private customer data into public repos).
+- [x] 2026-11-12 (done, merged in PR #4): Create a reusable Starter website project template and a complete staging-to-handover checklist (to deliver each $250 website reliably without copying private customer data into public repos).
 - [x] 2026-11-12 (done, kept privately; summary below): Research and document an age-eligible, customer-owned hosting workflow for commercial one-page websites, comparing Cloudflare Pages and Netlify using current official terms, free plan limits, client ownership, domains, HTTPS and handover steps; do not create accounts or migrate the current site (to make customer publishing safe and predictable).
 - [x] 2026-11-12 (plan done, kept privately; dry run itself not yet run): Prepare a private-demo-only end-to-end test plan covering enquiry, quote, content intake, preview, revisions, final signoff, site launch and handover; flag any missing technical steps and provide recommendations for owner approval (to confirm Paxlume can serve its first customer).
 
@@ -69,7 +69,7 @@ This file is not linked from the website. Note: this repo is public, so never pu
 ### Task 1 proposal: quote-request form ($0)
 Recommended: **keep the email button and add a form alongside it**, never replacing email. Options, best first:
 1. **Google Form owned by paxlumeweb@gmail.com**, linked from a "Request a quote" button. Free, no new company gets the data, answers land in a Google Sheet (can act as the lead tracker), Google handles spam, and email alerts for new answers can be turned on in Forms. Downside: it opens Google's styling, not navy/mint.
-2. **Web3Forms or Formspree (free tiers)** with an on-page navy/mint form. Needs a sign-up with the business Gmail, an email confirmation/activation step, a honeypot field plus that service's captcha for spam, and a `thank-you.html` page. Free-tier limits apply (roughly 50-250 submissions a month), and enquiry data passes through that company. Check age requirements in their terms with a parent or guardian before signing up.
+1. **Web3Forms or Formspree (free tiers)** with an on-page navy/mint form. Needs a sign-up with the business Gmail, an email confirmation/activation step, a honeypot field plus that service's captcha for spam, and a `thank-you.html` page. Free-tier limits apply (roughly 50-250 submissions a month), and enquiry data passes through that company. Check age requirements in their terms with a parent or guardian before signing up.
 3. Stay email-only and add a pre-filled email body (name, business, services, phone) so enquiries arrive complete.
 - Whatever is chosen, the form asks only for: name, email, optional phone, business name, what the business does, and anything else. A short privacy note sits under it: "We only use these details to reply to your enquiry. We don't sell or share them." Plus a "Prefer email? paxlumeweb@gmail.com" line.
 - Before anyone is told it works: send 2 test submissions from a phone and a computer and confirm they arrive in Gmail (and not in spam), then record that here.
@@ -91,11 +91,11 @@ Copy-only changes, using the existing sections and styles:
 ## Ben's decisions (2026-11-12)
 1. **Enquiry form:** Google Forms under paxlumeweb@gmail.com. No Google account needed to submit, email notifications on, keep the email option, and include a short privacy notice. Ben sees the form before it's linked on the site.
 2. **Technical fixes:** approved for a pull request. Screenshots before merge, no unnecessary design changes.
-3. **Turnaround:** advertise "typically 10–14 business days" after all content is received and scope agreed. Larger projects may take longer, and there's no guaranteed date before Ben checks his availability.
-4. **Payments:** keep the price at $250 AUD. Don't publish the deposit or payment method yet; they get finalised with adult help and clear terms first.
-5. **Hosting:** customers own their websites and hosting accounts wherever possible, using free hosting that allows commercial sites. Paxlume helps with setup, and customers pay directly for domains or paid hosting. Check GitHub Pages' terms. Don't migrate anything without approval.
-6. **About line:** "Paxlume Web Studio is an independent Brisbane-based web design studio focused on creating modern, affordable websites for small businesses." No full name, age, school or personal info. Ben approves the wording before publishing.
-7. **Gmail filter:** Ben sets it up with ChatGPT's guidance. Claude doesn't change any Gmail settings.
+2. **Turnaround:** advertise "typically 10–14 business days" after all content is received and scope agreed. Larger projects may take longer, and there's no guaranteed date before Ben checks his availability.
+3. **Payments:** keep the price at $250 AUD. Don't publish the deposit or payment method yet; they get finalised with adult help and clear terms first.
+4. **Hosting:** customers own their websites and hosting accounts wherever possible, using free hosting that allows commercial sites. Paxlume helps with setup, and customers pay directly for domains or paid hosting. Check GitHub Pages' terms. Don't migrate anything without approval.
+5. **About line:** "Paxlume Web Studio is an independent Brisbane-based web design studio focused on creating modern, affordable websites for small businesses." No full name, age, school or personal info. Ben approves the wording before publishing.
+6. **Gmail filter:** Ben sets it up with ChatGPT's guidance. Claude doesn't change any Gmail settings.
 
 ### What's unblocked and where it's at
 - **Quote form (task 1):** Claude can't sign in to Ben's Google account, so the form is designed in a private build guide (questions, privacy notice, settings, test checklist) that Ben builds from. Once Ben sends the form link and two test enquiries arrive in Gmail, Claude adds a "Request a quote" button next to the email button, on a branch with screenshots.
@@ -114,7 +114,7 @@ Copy-only changes, using the existing sections and styles:
 5. **Spam, accessibility, privacy.** Implement a honeypot and provider-supported CAPTCHA/anti-abuse measures if available, without unnecessarily blocking legitimate visitors. Use responsive inputs, labels, keyboard navigation, focus states, clear error messages and normal form submission without JS when possible. Show an accurate, short privacy notice explaining that details are used to respond to enquiries and may be processed by the chosen form provider. Do **not** claim there is no third-party sharing. Link to a reviewed privacy notice where needed. Keep all real customer responses and any testing with identifiable customer information out of GitHub and `HANDOFF.md`. Avoid unsolicited follow-up or marketing consent by default.
 6. **Delivery sequence (do as much as possible autonomously).** First implement the form on a separate GitHub branch and open a pull request; provide screenshots of desktop/mobile designs and list any unavoidable owner steps to activate the selected provider. If service selection/activation is not yet authorised, leave the current live contact option functional and clearly mark the form as untested/draft in PR; don't merge a nonworking customer-facing form. Ask for explicit owner approval before deploying the integration or changing services.
 7. **Acceptance tests.** After service activation with approval, run at least two real test enquiries (desktop and mobile) using **non-personal test data**; verify they actually arrive in business Gmail including spam check, that recipient, subject/reply-to and thank-you/error states work, that validation and anti-spam work without breaking access, and that the email fallback remains functional. Get owner confirmation of email receipt before calling the feature live; don't publish the live form until tests pass. Log only non-sensitive test outcomes and file/PR links in `Done by Claude`.
-8. **Report back.** Explain which delivery service you recommend and why, what you built, the PR link, screenshots, exact activation/approval steps (ideally just a confirmation email or one account-authorised step), what is blocked, and whether it is deployed. Update `Questions for Ben` with only necessary decisions; ask about any promises (e.g. 2-business-day reply time or 12-month deletion) rather than silently assuming them. Do not contact customers, spend money or publish large design changes without the owner's approval.
+7. **Report back.** Explain which delivery service you recommend and why, what you built, the PR link, screenshots, exact activation/approval steps (ideally just a confirmation email or one account-authorised step), what is blocked, and whether it is deployed. Update `Questions for Ben` with only necessary decisions; ask about any promises (e.g. 2-business-day reply time or 12-month deletion) rather than silently assuming them. Do not contact customers, spend money or publish large design changes without the owner's approval.
 
 ### Claude's progress on the on-site quote form (2026-11-12)
 - **Status: LIVE** (PR #3 merged 2026-11-12 with Ben's OK). To switch the form off quickly, set `data-form-active="false"` in `index.html`; visitors then see the email fallback.
@@ -178,7 +178,7 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - **Remaining approvals:** owner/guardian review of business registration, contracting/invoice wording and actual use of the payment process before first client. This handoff update is not authorisation to invoice or contact anyone.
 
 ## Claude update: bank transfer, templates and launch readiness (2026-11-12)
-**Short version:** the private payment and delivery kit is done (workflow, quote, invoice, confirmation emails, revised agreement, handover checklist, hosting comparison, dry-run plan). One public change is proposed in draft PR #4 and is **not live**. No bank details, customer records or private documents are in this repo; a scan of every file and the full git history found none.
+**Short version:** the private payment and delivery kit is done (workflow, quote, invoice, confirmation emails, revised agreement, handover checklist, hosting comparison, dry-run plan). PR #4 (payment wording + Starter template) was approved by Ben and merged. No bank details, customer records or private documents are in this repo; a scan of every file and the full git history found none.
 
 **Private (not in this repo):** a "Payments and Delivery Kit" doc for Ben, linked from the private Business Kit, plus a printable invoice template file in Ben's private project files. They cover:
 - **Workflow:** enquiry, quote (PAX-Q-YYYY-NNN, valid 30 days), written acceptance, deposit invoice A$125 (PAX-YYYY-NNN-D, due 7 days), work starts when cleared, preview, one round of changes, written approval, final invoice A$125 (PAX-YYYY-NNN-F, due 7 days), launch when cleared, handover, access removed, records kept privately for 5 years.
@@ -188,7 +188,7 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - **Hosting (research only, no sign-ups):** recommend **Cloudflare Pages** in an account the client creates, with Netlify as fallback. Cloudflare free: 500 builds a month, 100 custom domains per project, 20,000 files, no credit meter, no minimum age found in its agreement. Netlify free: 300 credits a month (15 per production deploy, 20 per GB bandwidth), and every site in the account pauses when credits run out; minimum age 13; commercial use and third-party sites allowed. Handover: client opens the account and invites Paxlume as a member, Paxlume uploads, client removes Paxlume's access. Paxlume never holds client passwords.
 - **Dry-run plan:** 12-stage fake job ("Test Co", job 000) from form to handover with pass checks. Not run yet; step 10 needs a test Cloudflare account, which needs Ben's and a parent/guardian's OK.
 
-**Public (draft PR #4, not merged):** https://github.com/paxlumeweb/Paxlumeweb/pull/4
+**Public (PR #4, merged and live 2026-11-12 with Ben's OK):** https://github.com/paxlumeweb/Paxlumeweb/pull/4
 - Price card fine print adds: "Paid by bank transfer in two parts; payment details are supplied privately on your invoice."
 - New FAQ "How do I pay?" explaining $125 + $125, bank details only on the private invoice, nothing paid through the website.
 - `starter-template/` folder: reusable one-page client template (placeholders only, noindex, labelled as a template) with build and pre-preview checklists in its README.
@@ -210,11 +210,11 @@ A launch kit containing a startup checklist, $250 offer/quote draft, service agr
 - 2026-11-12: Ben said merge. PR #3 merged and deployed. The live page shows "Request a free quote", and the thank-you and privacy pages load. A final test with non-personal data was accepted by FormSubmit after going live.
 - 2026-11-12: Bank transfer: wrote the private payment workflow, quote, invoice (plus printable template), payment confirmation and reminder emails, revised service agreement (v2) and handover checklist for the approved A$125 + A$125 split. Scanned the repo and history for bank or customer data: none.
 - 2026-11-12: Opened draft PR #4: payment wording preview (price card + "How do I pay?" FAQ) and the reusable `starter-template/`. Screenshots kept in Ben's private project files. Not merged.
+- 2026-11-12: Ben approved; PR #4 merged.
 - 2026-11-12: Hosting research done (Cloudflare Pages recommended, Netlify fallback) and end-to-end dry-run plan written. No accounts created.
 
 ## Questions for Ben
 _Updated 2026-11-12 by Claude. Details are in Ben's private Payments and Delivery Kit._
-1. **PR #4 wording:** OK to publish the "How do I pay?" FAQ and price-card line? Or keep only "bank transfer, details on your invoice" without the $125 + $125 split?
 2. **ABN (with parent/guardian):** without an ABN, a business client may withhold 47% of a payment unless an ATO exception applies and you give them a signed supplier statement (which includes your address). Recommendation: apply for a free ABN before the first business client.
 3. **Refund wording (with parent/guardian):** approve agreement v2: full refund before work starts, keep up to A$60 if cancelled before the first preview, deposit kept after a preview (no final payment, nothing published), full refund if Paxlume can't finish.
 4. **Due dates and quote validity:** invoices due 7 days after issue, quotes valid 30 days. OK?
