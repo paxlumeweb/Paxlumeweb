@@ -13,3 +13,30 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);}
 document.documentElement.classList.add('js');
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
 els.forEach(function(el){io.observe(el);});})();
+
+// Quote form: accessible validation and sending (works as a normal form post without JS)
+(function(){var f=document.querySelector('[data-quote-form]');if(!f)return;
+var status=f.querySelector('.form-status'),btn=f.querySelector('button[type="submit"]'),label=btn.textContent;
+var EMAIL='paxlumeweb@gmail.com',mail='<a href="mailto:'+EMAIL+'?subject=Paxlume%20website%20enquiry">'+EMAIL+'</a>';
+function show(kind,html){status.className='form-status '+kind;status.innerHTML=html;status.hidden=false;status.focus();}
+function check(el){var err=document.getElementById(el.id+'-err');if(!err)return true;
+  var v=el.value.trim(),ok=v!==''&&(el.type!=='email'||/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v));
+  el.setAttribute('aria-invalid',ok?'false':'true');err.hidden=ok;return ok;}
+var req=[].slice.call(f.querySelectorAll('[required]'));
+req.forEach(function(el){el.addEventListener('blur',function(){if(el.value.trim()!==''||el.getAttribute('aria-invalid'))check(el);});
+  el.addEventListener('input',function(){if(el.getAttribute('aria-invalid')==='true')check(el);});});
+f.addEventListener('submit',function(e){e.preventDefault();
+  var bad=req.filter(function(el){return !check(el);});
+  if(bad.length){show('err','Please fix the '+(bad.length===1?'highlighted field':bad.length+' highlighted fields')+' and try again.');bad[0].focus();return;}
+  if(f.querySelector('[name="_honey"]').value)return; // bot
+  if(f.getAttribute('data-form-active')!=='true'){show('err','Sorry, the online form isn\'t switched on yet. Please email your enquiry to '+mail+' instead.');return;}
+  btn.disabled=true;btn.textContent='Sending…';status.hidden=true;
+  var data=new FormData(f),body={};data.forEach(function(v,k){body[k]=v;});
+  fetch(f.action.replace('formsubmit.co/','formsubmit.co/ajax/'),{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
+  .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok,j:j};});})
+  .then(function(res){if(res.ok&&(res.j.success===true||res.j.success==='true')){f.reset();
+      show('ok','Thanks! Your enquiry has been sent. I\'ll reply by email soon. If you don\'t hear back, please email '+mail+'.');}
+    else{throw new Error('rejected');}})
+  .catch(function(){show('err','Sorry, your enquiry wasn\'t sent. Please try again, or email '+mail+' directly.');})
+  .then(function(){btn.disabled=false;btn.textContent=label;});
+});})();
