@@ -11,6 +11,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);}
 
 // Quote form: accessible validation and sending (works as a normal form post without JS)
 (function(){var f=document.querySelector('[data-quote-form]');if(!f)return;
+f.noValidate=true; // JS shows its own messages; without JS the browser's built-in checks apply
 var status=f.querySelector('.form-status'),btn=f.querySelector('button[type="submit"]'),label=btn.textContent;
 var EMAIL='paxlumeweb@gmail.com',mail='<a href="mailto:'+EMAIL+'?subject=Paxlume%20website%20enquiry">'+EMAIL+'</a>';
 function show(kind,html){status.className='form-status '+kind;status.innerHTML=html;status.hidden=false;status.focus();}

@@ -56,6 +56,17 @@ done
 # at the domain root, so point them at /.
 sed -i 's#="/Paxlumeweb/#="/#g' "$OUT/404.html"
 
+# Cloudflare serves pages at clean URLs (/privacy) and answers /privacy.html and
+# /index.html with a redirect. Point internal links straight at the clean URL so
+# visitors and search engines skip that extra hop. Source files keep ".html" so
+# GitHub Pages and opening the files locally still work.
+for page in "$OUT"/*.html; do
+  sed -i -E \
+    -e 's#href="/?index\.html(\#[^"]*)?"#href="/\1"#g' \
+    -e 's#href="/?([a-z0-9-]+)\.html(\#[^"]*)?"#href="/\1\2"#g' \
+    "$page"
+done
+
 # Pages sets CF_PAGES_BRANCH; Workers Builds sets WORKERS_CI_BRANCH.
 BRANCH="${CF_PAGES_BRANCH:-${WORKERS_CI_BRANCH:-local}}"
 if [ "$BRANCH" != "main" ]; then
@@ -86,6 +97,9 @@ CSP="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' dat
   printf '  Referrer-Policy: strict-origin-when-cross-origin\n'
   printf '  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()\n'
   printf '  Strict-Transport-Security: max-age=15552000\n'
+  # Fonts never change under the same name, so browsers can keep them for a year.
+  printf '/fonts/*\n'
+  printf '  Cache-Control: public, max-age=31536000, immutable\n'
   # The workers.dev staging address is never indexed, whatever the settings
   # above, so it can't compete with the real domain after launch.
   printf 'https://paxlumeweb.paxlumeweb.workers.dev/*\n'
@@ -101,7 +115,9 @@ if find "$OUT" -name '*.md' | grep -q .; then fail "a Markdown file ended up in 
 
 # The CSP has no 'unsafe-inline', so inline styles, inline scripts and on*=""
 # handlers would silently break. Put them in style.css / script.js instead.
-if grep -lE '<style|style="|<script>|<script [^>]*>[^<]|[[:space:]]on[a-z]+="' "$OUT"/*.html; then
+# (JSON-LD structured data is allowed: browsers never run it, so the CSP ignores it.)
+if sed -E 's#<script type="application/ld\+json">#<ldjson>#g' "$OUT"/*.html | grep -qE '<style|style="|<script>|<script [^>]*>[^<]|[[:space:]]on[a-z]+="'; then
+  grep -lE '<style|style="|[[:space:]]on[a-z]+="' "$OUT"/*.html || true
   fail "inline style/script found in the pages above; move it to style.css or script.js (the CSP blocks inline code)"
 fi
 
@@ -114,6 +130,7 @@ for page in "$OUT"/*.html "$OUT"/*.css; do
     [ -n "$path" ] || continue
     case "$path" in /*) target="$OUT$path" ;; *) target="$OUT/$path" ;; esac
     case "$target" in */) target="${target}index.html" ;; esac
+    [ -e "$target" ] || [ ! -e "$target.html" ] || continue   # clean URL, e.g. /privacy
     if [ ! -e "$target" ]; then echo "  broken link in ${page#$OUT/}: $ref" >&2; missing=1; fi
   done < <(grep -oE '(href|src)="[^"]*"|url\([^)]*\)' "$page" | sed -E 's/^(href|src)="//; s/"$//; s/^url\(//; s/\)$//; s/^["'\'']//; s/["'\'']$//' || true)
 done

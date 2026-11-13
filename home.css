@@ -6,7 +6,10 @@
 }
 .home ::selection{background:var(--mint);color:var(--navy)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.home :focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:6px}
+/* Focus ring: teal on light backgrounds, mint on navy ones (both at least 3:1 against what is behind them). */
+.home :focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+.home .topbar :focus-visible,.home .hero :focus-visible,.home .cta :focus-visible,.home .price-top :focus-visible{outline-color:var(--mint)}
+.home .cta .quote-form :focus-visible{outline-color:var(--teal)}
 
 /* Header */
 .home .topbar{position:sticky;top:0;padding:14px 0;background:var(--navy);color:#fff;border-bottom:1px solid #22344A}
@@ -165,7 +168,7 @@
 .quote-form input,.quote-form select,.quote-form textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:1.5px solid #8A95A1;border-radius:12px;padding:13px 14px;min-height:48px}
 .quote-form textarea{resize:vertical;min-height:96px;line-height:1.5}
 .quote-form select{appearance:none;-webkit-appearance:none;padding-right:40px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23101D2C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 14px center/16px no-repeat}
-.quote-form input:focus,.quote-form select:focus,.quote-form textarea:focus{outline:3px solid var(--mint);outline-offset:1px;border-color:var(--teal)}
+.quote-form input:focus,.quote-form select:focus,.quote-form textarea:focus{outline:3px solid var(--teal);outline-offset:1px;border-color:var(--teal)}
 .quote-form ::placeholder{color:#6B7682}
 .quote-form [aria-invalid="true"]{border-color:#B42318;background-color:#FFF8F7}
 .home .cta .quote-form .field-hint{margin:0;font-size:.82rem;line-height:1.45}
