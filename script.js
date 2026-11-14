@@ -31,7 +31,7 @@ f.addEventListener('submit',function(e){e.preventDefault();
   fetch(f.action.replace('formsubmit.co/','formsubmit.co/ajax/'),{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
   .then(function(r){return r.json().catch(function(){return {};}).then(function(j){return {ok:r.ok,j:j};});})
   .then(function(res){if(res.ok&&(res.j.success===true||res.j.success==='true')){f.reset();
-      show('ok','Thanks! Your enquiry has been sent. I\'ll reply by email soon. If you don\'t hear back, please email '+mail+'.');}
+      show('ok','Thanks! Your enquiry has been sent. We\'ll reply by email within 2 business days. If you don\'t hear back, please email '+mail+'.');}
     else{var e=new Error('rejected');e.info=(res.j&&res.j.message)||('HTTP '+(res.ok?'OK, no success flag':'error'));throw e;}})
   .catch(function(err){show('err','Sorry, your enquiry wasn\'t sent. Please try again, or email '+mail+' directly.');
     // Show the form service's own reason (as plain text) so a setup problem, e.g. "needs activation", is visible.
